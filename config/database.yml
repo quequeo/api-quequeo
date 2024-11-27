@@ -16,7 +16,7 @@ development:
 test:
   <<: *default
   database: <%= ENV['POSTGRES_TEST_DB'] %>
-  host: <%= ENV['POSTGRES_HOST'] || 'localhost' %>
+  host: localhost
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 

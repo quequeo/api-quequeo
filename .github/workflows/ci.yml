@@ -94,6 +94,8 @@ jobs:
           done
   
       - name: Prepare the database
+        env:
+          RAILS_ENV: test
         run: |
           bin/rails db:create --verbose
           bin/rails db:migrate --verbose
@@ -103,7 +105,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio_test
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test
   
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
