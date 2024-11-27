@@ -39,9 +39,6 @@ jobs:
           bundler-cache: false
 
       - name: Install JavaScript dependencies
-        run: npm install
-
-      - name: Scan for security vulnerabilities in JavaScript dependencies
         run: echo "No JavaScript dependencies to audit"
 
   lint:
