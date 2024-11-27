@@ -61,45 +61,43 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-
+  
     services:
       postgres:
         image: postgres
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_DB: wellio_test
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
+  
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client
-
       - name: Checkout code
         uses: actions/checkout@v4
-
+  
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: false
-
+  
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
-
+  
       - name: Prepare the database
         run: |
           bin/rails db:create --verbose
           bin/rails db:migrate --verbose
           bin/rails db:seed --verbose
-
+  
       - name: Run tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio_test
         run: bin/rails db:test:prepare test test:system
-
+  
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
         if: failure()
@@ -107,3 +105,4 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+  
