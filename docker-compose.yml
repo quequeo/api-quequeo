@@ -1,0 +1,36 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/rails_app"
+    depends_on:
+      - db
+    environment:
+      - RAILS_ENV=development
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DEV_DB=${POSTGRES_DEV_DB}
+    env_file:
+      - .env
+    restart: always
+
+  db:
+    image: postgres:15
+    platform: linux/arm64
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DEV_DB=${POSTGRES_DEV_DB}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    restart: always
+volumes:
+  db_data:
