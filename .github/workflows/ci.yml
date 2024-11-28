@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
 
-      - name: Scan for common Rails security vulnerabilities
+      - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
   scan_js:
@@ -38,12 +38,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: false
 
-      - name: Analyze JavaScript dependencies
+      - name: Install JavaScript dependencies
         run: echo "No JavaScript dependencies to audit"
 
   lint:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -80,7 +79,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U ${{ secrets.POSTGRES_USER }}" 
+          --health-cmd="pg_isready -U ${{ secrets.POSTGRES_USER }}"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -98,6 +97,12 @@ jobs:
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
 
+      - name: Debug environment variables
+        run: |
+          echo "POSTGRES_USER: ${{ secrets.POSTGRES_USER }}"
+          echo "POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}"
+          echo "POSTGRES_TEST_DB: ${{ secrets.POSTGRES_TEST_DB }}"
+
       - name: Wait for PostgreSQL to be ready
         run: |
           until pg_isready -h localhost -U ${{ secrets.POSTGRES_USER }}; do
@@ -106,9 +111,14 @@ jobs:
           done
   
       - name: Prepare the database
+        env:
+          RAILS_ENV: test
         run: bin/rails db:prepare --verbose
   
       - name: Run tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_TEST_DB }}
         run: bin/rails test
   
       - name: Keep screenshots from failed system tests
@@ -118,3 +128,4 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+  
