@@ -10,18 +10,18 @@ __Rails: 8.0.0__
 __Docker: 20.10+__
 __Docker Compose: 2.x+__
 
-### Configuración Inicial ⚙️
-1. **Clona el repositorio**
+**Configuración Inicial** ⚙️
+1. Clona el repositorio
    ```bash
    git clone https://github.com/tu-usuario/api-wellio-fit.git
    cd api-wellio-fit
-2. **Construye la imagen de Docker**
+2. Construye la imagen de Docker
     ```bash
     docker-compose build
-3. **Instala las gemas necesarias**
+3. Instala las gemas necesarias
     ```bash
     docker-compose run app bundle install
-4. **Configura las variables de entorno**
+4. Configura las variables de entorno
 Crea un archivo .env en el directorio raíz con los siguientes valores:
     ```makefile
     RAILS_ENV=development
@@ -72,6 +72,12 @@ El despliegue de esta aplicación en producción sigue estos pasos generales:
 **Servicios Adicionales** 🔧
 
 ...
+**CI/CD con GitHub Actions** 🛡️
+Pipeline de integración continua de GitHub Actions, asegurando la calidad del código mediante análisis y pruebas automatizadas, que incluye los siguientes pasos:
+1. Scan de Seguridad en Ruby: Utiliza bundler-audit y otras herramientas para identificar vulnerabilidades en gemas.
+2. Scan de Seguridad en JavaScript: Analiza dependencias de JavaScript utilizando npm audit o herramientas similares.
+3. Linting: Asegura que el código sigue las convenciones de estilo con herramientas como rubocop para Ruby y eslint para JavaScript.
+4. Pruebas Automatizadas: Ejecuta las pruebas de RSpec para validar la funcionalidad de la aplicación.
 
 **Colaboradores** 👥
 Autor: Jaime F. García Méndez
