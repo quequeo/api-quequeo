@@ -159,6 +159,9 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y python3-pip
           sudo pip3 install awsebcli
+
+      - name: Verify EB CLI installation
+        run: eb --version
   
       - name: Initialize Elastic Beanstalk
         run: |
@@ -166,7 +169,7 @@ jobs:
   
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb deploy
+          eb deploy Api-wellio-fit-production
 
 
         
