@@ -17,7 +17,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
@@ -36,7 +36,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Install JavaScript dependencies
         run: echo "No JavaScript dependencies to audit"
@@ -51,7 +51,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
@@ -92,7 +92,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
-          bundler-cache: false
+          bundler-cache: true
   
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
@@ -128,4 +128,35 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
-  
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true  # Habilita el caché de Bundler
+      
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Set up AWS CLI
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region ${{ secrets.AWS_REGION }}
+          eb init -p ruby --region ${{ secrets.AWS_REGION }} ${{ secrets.APPLICATION_NAME }}
+          eb deploy
+
+
+        
+
+
