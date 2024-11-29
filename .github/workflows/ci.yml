@@ -169,7 +169,7 @@ jobs:
   
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb deploy Api-wellio-fit-production
+          eb deploy "Api-wellio-fit-production" --region ${{ secrets.AWS_REGION }}
 
 
         
