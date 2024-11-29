@@ -35,3 +35,6 @@
 # Ignore all environment files (except templates).
 /.env*
 !/.env*.erb
+
+# Aws Instance key
+/*.pem

@@ -1,7 +1,6 @@
 # API Wellio Fit 🚀
 
 Bienvenido a __API Wellio Fit__, una API desarrollada con __Ruby on Rails 8__ y __Ruby 3.2.4__, diseñada para funcionar dentro de un entorno Dockerizado. 
-Este README detalla cómo configurar, ejecutar y probar la aplicación.
 
 ## Requisitos del Sistema 🛠️
 
@@ -10,37 +9,20 @@ __Rails: 8.0.0__
 __Docker: 20.10+__
 __Docker Compose: 2.x+__
 
-**Configuración Inicial** ⚙️
+⚙️ **Configuración Inicial** 
 1. Clona el repositorio
    ```bash
    git clone https://github.com/tu-usuario/api-wellio-fit.git
    cd api-wellio-fit
-2. Construye la imagen de Docker
+2. Construye la imagen de Docker y lanza la aplicación
     ```bash
     docker-compose build
-3. Instala las gemas necesarias
-    ```bash
-    docker-compose run app bundle install
-4. Configura las variables de entorno
-Crea un archivo .env en el directorio raíz con los siguientes valores:
-    ```makefile
-    RAILS_ENV=development
-    DATABASE_URL=postgres://user:password@db:5432/api_wellio_fit
-    SECRET_KEY_BASE=tu_clave_secreta
+    docker-compose up
 ****
-**Base de Datos** 📦
-1. Crear la base de datos
-    ```bash
-    docker-compose run app rails db:create
-2. Ejecutar migraciones
-    ```bash
-    docker-compose run app rails db:migrate
-3. (Opcional) Cargar datos iniciales
-Si tienes un archivo db/seeds.rb, puedes ejecutarlo con:
-    ```bash
-    docker-compose run app rails db:seed
+📦 **Base de Datos**
+- La base de datos se crea automáticamente al ejecutar docker-compose build.
 ****
-**Testing** 🧪
+🧪 **Testing**
 1. Configurar RSpec
 Si RSpec aún no está configurado:
     ```bash
@@ -49,7 +31,7 @@ Si RSpec aún no está configurado:
     ```bash
     docker-compose run app rspec
 ****
-**Comandos Útiles** 📋 
+📋 **Comandos Útiles**
 1. Instalar nuevas gemas
 Si agregas una nueva gema a tu proyecto, recuerda ejecutarlo dentro del contenedor:
     ```bash
@@ -65,14 +47,17 @@ Si agregas una nueva gema a tu proyecto, recuerda ejecutarlo dentro del contened
     docker-compose run app sh
 ****
 **Despliegue** 🚢
-El despliegue de esta aplicación en producción sigue estos pasos generales:
+
+- El despliegue de esta aplicación en producción sigue estos pasos generales:
 
 ...
 
 **Servicios Adicionales** 🔧
 
 ...
+
 **CI/CD con GitHub Actions** 🛡️
+
 Pipeline de integración continua de GitHub Actions, asegurando la calidad del código mediante análisis y pruebas automatizadas, que incluye los siguientes pasos:
 1. Scan de Seguridad en Ruby: Utiliza bundler-audit y otras herramientas para identificar vulnerabilidades en gemas.
 2. Scan de Seguridad en JavaScript: Analiza dependencias de JavaScript utilizando npm audit o herramientas similares.
@@ -80,7 +65,9 @@ Pipeline de integración continua de GitHub Actions, asegurando la calidad del c
 4. Pruebas Automatizadas: Ejecuta las pruebas de RSpec para validar la funcionalidad de la aplicación.
 
 **Colaboradores** 👥
+
 Autor: Jaime F. García Méndez
 
 **Licencia** 📜
+
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más información.

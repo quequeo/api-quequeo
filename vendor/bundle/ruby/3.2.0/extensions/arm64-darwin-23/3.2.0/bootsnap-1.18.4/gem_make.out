@@ -1,0 +1,23 @@
+current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.18.4/ext/bootsnap
+/Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
+checking for fdatasync() in unistd.h... yes
+checking for whether -D_GNU_SOURCE is accepted as CPPFLAGS... yes
+checking for whether -O3 is accepted as CFLAGS... yes
+checking for whether -std=c99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.18.4/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20241129-14619-dgmgtp sitelibdir\=./.gem.20241129-14619-dgmgtp clean
+
+current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.18.4/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20241129-14619-dgmgtp sitelibdir\=./.gem.20241129-14619-dgmgtp
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.18.4/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20241129-14619-dgmgtp sitelibdir\=./.gem.20241129-14619-dgmgtp install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20241129-14619-dgmgtp/bootsnap
+
+current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.18.4/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20241129-14619-dgmgtp sitelibdir\=./.gem.20241129-14619-dgmgtp clean
