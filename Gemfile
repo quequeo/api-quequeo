@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "rack-cors"
 gem "jwt"
 gem "dotenv-rails"
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

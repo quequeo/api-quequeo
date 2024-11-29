@@ -1,0 +1,5 @@
+branch-defaults:
+  main:
+    environment: api-wellio-fit-env-production
+global:
+  profile: eb-cli
