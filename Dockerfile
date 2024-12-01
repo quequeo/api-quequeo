@@ -17,9 +17,6 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 
-# Install rspec globally
-RUN gem install rspec
-
 # Directory to store the app
 WORKDIR /app
 
