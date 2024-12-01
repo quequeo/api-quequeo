@@ -4,8 +4,8 @@ FROM ruby:3.2.4-slim-bullseye
 ENV BUNDLE_PATH=/gems \
     BUNDLE_JOBS=4 \
     BUNDLE_RETRY=3 \
-    RAILS_ENV=development \
-    BUNDLE_WITHOUT=production
+    RAILS_ENV=production \
+    BUNDLE_WITHOUT=development
 
 # Install dependencies (PostgreSQL, Node.js, Yarn, etc.)
 RUN apt-get update -qq && \
