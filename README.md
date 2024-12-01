@@ -29,7 +29,7 @@ Si RSpec aún no está configurado:
     docker-compose run app rails generate rspec:install
 2. Ejecutar las pruebas
     ```bash
-    docker-compose run app rspec
+    docker-compose run app bundle exec rspec
 ****
 📋 **Comandos Útiles**
 1. Instalar nuevas gemas

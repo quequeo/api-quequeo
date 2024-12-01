@@ -1,12 +1,10 @@
 services:
   app:
     build: .
-    image: api-wellio-fit
-    container_name: api-wellio-fit
     ports:
       - "3000:3000"
     volumes:
-      - ".:/rails_app"
+      - ".:/app"
     environment:
       - RAILS_ENV=development
       - POSTGRES_HOST=db
@@ -18,18 +16,19 @@ services:
       - .env
     depends_on:
       - db
+
   db:
     image: postgres:15
-    container_name: api-wellio-fit-db
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DEV_DB=${POSTGRES_DEV_DB}
+      - POSTGRES_DB=${POSTGRES_DEV_DB}
     ports:
       - "5432:5432"
     env_file:
       - .env
     volumes:
       - db_data:/var/lib/postgresql/data
+
 volumes:
   db_data:
