@@ -108,3 +108,15 @@
 ### **Tips**
 * Always verify the file paths and IP addresses when transferring files or connecting to the instance.
 * Ensure your security group settings allow SSH and the necessary ports for your app (e.g., port 80 for HTTP, port 443 for HTTPS).
+
+
+**Docker container** 🐳
+1. IP address: docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <ID_del_contenedor>
+
+**Nginx** 🌐
+1. sudo apt update && sudo apt upgrade -y
+2. sudo apt install -y nginx
+3. sudo nano /etc/nginx/sites-available/default
+4. proxy_pass http://<IP_del_contenedor>:<puerto_del_contenedor>;
+5. sudo systemctl restart nginx
+6. sudo systemctl status nginx
