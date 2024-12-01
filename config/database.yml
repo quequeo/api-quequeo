@@ -11,17 +11,17 @@ default: &default
 development:
   <<: *default
   host: <%= ENV.fetch("POSTGRES_HOST", "db") %>
-  database: <%= ENV.fetch("POSTGRES_DEV_DB", "db") %>
+  database: <%= ENV.fetch("POSTGRES_DB", "db") %>
 
 test:
   <<: *default
-  database: <%= ENV.fetch('POSTGRES_TEST_DB', 'wellio_test') %>
+  database: <%= ENV.fetch('POSTGRES_DB', 'wellio_test') %>
   host: <%= ENV.fetch('POSTGRES_HOST', 'localhost') %>
   username: <%= ENV.fetch('POSTGRES_USER', 'postgres') %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD', '123456') %>
 
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_PROD_DB'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>

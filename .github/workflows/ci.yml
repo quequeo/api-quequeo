@@ -129,49 +129,25 @@ jobs:
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
 
-  deploy:
+  build:
     runs-on: ubuntu-latest
     needs: test
 
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+      - name: Login to Docker Hub
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true  # Habilita el caché de Bundler
-      
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
+      - name: Build the Docker image
+        run: docker build -t wellio-fit/api-wellio-fit:latest .
 
-      - name: Set up AWS CLI
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region ${{ secrets.AWS_REGION }}
-          aws configure set default.env_name ${{ secrets.AWS_ENV_NAME }}
-          aws configure set default.output json
+      - name: Push to Docker Hub
+        run: docker push wellio-fit/api-wellio-fit:latest
 
-      - name: Install AWS Elastic Beanstalk CLI
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y python3-pip
-          sudo pip3 install awsebcli
 
-      - name: Verify EB CLI installation
-        run: eb --version
-  
-      - name: Initialize Elastic Beanstalk
-        run: |
-          eb init -p ruby --region ${{ secrets.AWS_REGION }} ${{ secrets.APPLICATION_NAME }}
-  
-      - name: Deploy to Elastic Beanstalk
-        run: |
-          eb deploy ${{ secrets.AWS_ENV_NAME }} --region ${{ secrets.AWS_REGION }}
 
 
         

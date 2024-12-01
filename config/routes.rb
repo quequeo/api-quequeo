@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "/register", to: "auth#register"
       post "/login", to: "auth#login"
+      get "/instance", to: "ec2#instance"
     end
   end
 end

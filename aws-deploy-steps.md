@@ -56,9 +56,8 @@
     ```
     Example:
     ```bash
-    rsync -avz -e "ssh -i Wellio-API-AWS-RSA-Key.pem" /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit ubuntu@ec2-3-82-54-64.compute-1.amazonaws.com:/home/ubuntu/app
+    rsync -avz -e "ssh -i Wellio-API-AWS-RSA-Key.pem" --exclude='.git' --exclude='vendor/bundle' /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit ubuntu@ec2-52-87-226-55.compute-1.amazonaws.com:/home/ubuntu/app
     ```
-
 ### **4. Build and Run the Application**
 
 1. **Navigate to the app folder on the EC2 instance**:
