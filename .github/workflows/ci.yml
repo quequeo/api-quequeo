@@ -136,15 +136,12 @@ jobs:
     steps:
       - name: Debug Docker credentials
         run: |
-          echo "DOCKERHUB_USERNAME: $DOCKERHUB_USERNAME"
-          echo "DOCKERHUB_PASSWORD: $DOCKERHUB_PASSWORD"
+          echo "DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}"
+          echo "DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}"
 
       - uses: actions/checkout@v3
       - name: Login to Docker Hub
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_PASSWORD }}
-        run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build the Docker image
         run: docker build -t wellio-fit/api-wellio-fit:latest .
