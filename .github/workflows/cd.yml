@@ -40,11 +40,18 @@ jobs:
       - name: Install unzip
         run: sudo apt-get install unzip -y
 
-      - name: Set up AWS CLI
+      - name: Install AWS CLI
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
           sudo ./aws/install
+
+      - name: Set up AWS CLI
+        run: |
+          aws --version
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region us-east-1
 
       - name: Login to ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
