@@ -37,6 +37,9 @@ jobs:
 
     # AWS ECR pull + delete + run
     steps:
+      - name: Install unzip
+        run: sudo apt-get install unzip -y
+
       - name: Set up AWS CLI
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -48,12 +51,6 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get install jq
-      
-      - name: Delete old Docker images from ECR
-        run: |
-          aws ecr list-images --repository-name monitoapps/api-wellio-fit --query 'imageIds[?imageTag!=`latest`]' --output json | \
-          jq -r '.[] | {imageDigest: .imageDigest}' | \
-          aws ecr batch-delete-image --repository-name monitoapps/api-wellio-fit --image-ids file://<(cat)
 
       - name: Pull the Docker image
         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest

@@ -168,6 +168,5 @@ jobs:
       - name: Tag Docker image
         run: docker tag monitoapps/api-wellio-fit:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
 
-
       - name: Push Docker image to ECR
         run: docker push 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
