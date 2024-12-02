@@ -134,15 +134,40 @@ jobs:
     #     run: docker push monitoapps/api-wellio-fit:latest
 
     # Github Container Registry login + build + push
+    # steps:
+    #   - name: Checkout code
+    #     uses: actions/checkout@v3
+
+    #   - name: Login to GitHub Container Registry
+    #     run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u quequeo --password-stdin
+      
+    #   - name: Build the Docker image
+    #     run: docker build -t ghcr.io/quequeo/api-wellio-fit:latest .
+
+    #   - name: Push to GitHub Container Registry
+    #     run: docker push ghcr.io/quequeo/api-wellio-fit:latest
+
+    # AWS ECR login + build + push
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Login to GitHub Container Registry
-        run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u quequeo --password-stdin
-      
-      - name: Build the Docker image
-        run: docker build -t ghcr.io/quequeo/api-wellio-fit:latest .
+      - name: Set up AWS CLI
+        run: |
+          aws --version
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region us-east-1
 
-      - name: Push to GitHub Container Registry
-        run: docker push ghcr.io/quequeo/api-wellio-fit:latest
+      - name: AWS ECR Login
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
+  
+      - name: Build Docker image
+        run: docker build -t monitoapps/api-wellio-fit .
+
+      - name: Tag Docker image
+        run: docker tag monitoapps/api-wellio-fit:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+
+
+      - name: Push Docker image to ECR
+        run: docker push 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
