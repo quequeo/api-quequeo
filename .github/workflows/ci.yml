@@ -66,17 +66,16 @@ jobs:
       RAILS_ENV: test
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/wellio-fit-test
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/wellio-fit-test
   
     services:
       postgres:
-        image: postgres
+        image: postgres:13
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wellio-fit-test
         options: >-
-          --health-cmd="pg_isready"
+          --health-cmd="pg_isready -U postgres"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -91,6 +90,13 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
   
+      - name: Wait for PostgreSQL
+        run: |
+          until pg_isready -h 127.0.0.1 -p 5432 -U postgres; do
+            echo "Waiting for PostgreSQL to be ready..."
+            sleep 5
+          done
+  
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
   
@@ -102,7 +108,6 @@ jobs:
       - name: Run RSpec tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wellio-fit-test
         run: bundle exec rspec --format documentation
 
   build:
