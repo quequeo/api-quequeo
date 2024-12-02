@@ -60,23 +60,26 @@ jobs:
         run: bin/rubocop -f github
 
   test:
-    if: false
     runs-on: ubuntu-latest
 
     env:
       RAILS_ENV: test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/wellio-fit-test
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_TEST_DB: ${{ secrets.POSTGRES_TEST_DB }}
+      DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_TEST_DB }}
   
     services:
       postgres:
-        image: postgres:13
+        image: postgres
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_TEST_DB }}
+        ports:
+          - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U postgres"
+          --health-cmd="pg_isready"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -91,15 +94,21 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
   
-      - name: Wait for PostgreSQL
-        run: |
-          until pg_isready -h postgres -p 5423 -U postgres; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 5
-          done
-  
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Debug environment variables
+        run: |
+          echo "POSTGRES_USER: ${{ secrets.POSTGRES_USER }}"
+          echo "POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}"
+          echo "POSTGRES_TEST_DB: ${{ secrets.POSTGRES_TEST_DB }}"
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until pg_isready -h localhost -U ${{ secrets.POSTGRES_USER }}; do
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
   
       - name: Prepare the database
         env:
@@ -109,11 +118,20 @@ jobs:
       - name: Run RSpec tests
         env:
           RAILS_ENV: test
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_TEST_DB }}
         run: bundle exec rspec --format documentation
+  
+      - name: Keep screenshots from failed system tests
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/tmp/screenshots
+          if-no-files-found: ignore
 
   build:
     runs-on: ubuntu-latest
-    needs: lint # test
+    needs: test
 
     steps:
       - name: Debug Docker credentials
