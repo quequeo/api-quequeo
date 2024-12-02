@@ -67,6 +67,118 @@ jobs:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
       POSTGRES_TEST_DB: wellio-fit-test
+      DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+  
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_DB: wellio-fit-test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+  
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+  
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until pg_isready -h localhost -U postgres; do
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+  
+      - name: Prepare the database
+        run: bin/rails db:prepare --verbose
+  
+      - name: Run RSpec tests
+        run: bundle exec rspec --format documentation
+
+      name: CI Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  scan_ruby:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install JavaScript dependencies
+        run: echo "No JavaScript dependencies to audit"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_TEST_DB: wellio-fit-test
       DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_TEST_DB }}
   
     services:
@@ -105,30 +217,42 @@ jobs:
           done
   
       - name: Prepare the database
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123456
-          POSTGRES_TEST_DB: wellio-fit-test
-          DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
         run: bin/rails db:prepare --verbose
   
       - name: Run RSpec tests
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123456
-          POSTGRES_TEST_DB: wellio-fit-test
-          DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
         run: bundle exec rspec --format documentation
-  
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
+
+      - name: Test summary
+        if: always()
+        run: echo "Tests completed. Check results above."
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Debug Docker credentials
+        run: |
+          echo "DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}"
+          echo "DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}"
+
+      - uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build the Docker image
+        run: docker build -t monitoapps/api-wellio-fit:latest .
+
+      - name: Push to Docker Hub
+        run: docker push monitoapps/api-wellio-fit:latest
+
+
+
+
+        
+
+
+
 
   build:
     runs-on: ubuntu-latest
