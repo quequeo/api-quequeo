@@ -41,7 +41,10 @@ jobs:
         run: sudo apt-get install unzip -y
         
       - name: Install AWS CLI using apt
-        run: sudo apt-get update && sudo apt-get install awscli -y
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip -u awscliv2.zip
+          sudo ./aws/install
 
       - name: Verify AWS CLI version
         run: aws --version
