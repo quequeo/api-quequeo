@@ -39,19 +39,9 @@ jobs:
     steps:
       - name: Install unzip
         run: sudo apt-get install unzip -y
-    
-      - name: Set up python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      - name: Install pip
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install python3-pip -y
         
-      - name: Install AWS CLI using pip
-        run: sudo pip3 install awscli
+      - name: Install AWS CLI using apt
+        run: sudo apt-get update && sudo apt-get install awscli -y
 
       - name: Verify AWS CLI version
         run: aws --version
