@@ -39,12 +39,17 @@ jobs:
     steps:
       - name: Install unzip
         run: sudo apt-get install unzip -y
-
+    
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+        
       - name: Install AWS CLI
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
+        run: sudo pip install awscli
+
+      - name: Verify AWS CLI version
+        run: aws --version
 
       - name: Set up AWS CLI
         run: |
@@ -56,9 +61,6 @@ jobs:
       - name: Login to ECR
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
 
-      - name: Install jq
-        run: sudo apt-get install jq
-
       - name: Pull the Docker image
         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
 
@@ -67,8 +69,3 @@ jobs:
 
       - name: Run the Docker container
         run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
-
-
-        
-
-
