@@ -1,34 +1,20 @@
+name: wellio-fit
 services:
   app:
-    build: .
+    container_name: wellio-fit
+    build:
+      context: .
+      args:
+        BUNDLE_WITHOUT: ""
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     volumes:
-      - ".:/app"
-    environment:
-      - RAILS_ENV=development
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DEV_DB=${POSTGRES_DEV_DB}
-    env_file:
-      - .env
-    depends_on:
-      - db
-
+      -  .:/var/www/wellio-fit/current
   db:
+    container_name: wellio-fit-database
     image: postgres:15
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DEV_DB}
-    ports:
-      - "5433:5432"
-    env_file:
-      - .env
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-volumes:
-  db_data:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust

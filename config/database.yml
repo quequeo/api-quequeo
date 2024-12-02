@@ -10,14 +10,4 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['POSTGRES_DEV_DB'] %>
-
-test:
-  <<: *default
-  database: <%= ENV['POSTGRES_TEST_DB'] %>
-
-production:
-  <<: *default
-  database: <%= ENV['POSTGRES_PROD_DB'] %>
-  username: <%= ENV['POSTGRES_PROD_USER'] %>
-  password: <%= ENV['POSTGRES_PROD_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
