@@ -27,7 +27,7 @@ jobs:
         run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "quequeo" --password-stdin
 
       - name: Pull the Docker image
-        run: sudo docker pull ghcr.io/quequeo/api-wellio-fit:latest
+        run: docker pull ghcr.io/quequeo/api-wellio-fit:latest
 
       - name: Delete the old Docker container
         run: sudo docker rm -f api-wellio-fit-container || true
