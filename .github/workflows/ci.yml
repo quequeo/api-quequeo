@@ -127,7 +127,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@ec2-54-211-187-236.compute-1.amazonaws.com << EOF
           cd app/api-wellio-fit
-          git pull https://github.com/${{ secrets.GIT_HUB_TOKEN }}@github.com/<your-username>/<your-repo>.git main
+          git pull https://github.com/${{ secrets.GIT_HUB_TOKEN }}@github.com/quequeo/api-wellio-fit.git main
           docker-compose down
           docker-compose build
           docker-compose up -d
