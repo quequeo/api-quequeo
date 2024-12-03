@@ -107,6 +107,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: test
 
     steps:
       - name: Checkout code
@@ -128,5 +129,6 @@ jobs:
           cd app/api-wellio-fit
           git pull origin main
           docker-compose down
-          docker-compose up --build -d
+          docker-compose build
+          docker-compose up -d
           EOF
