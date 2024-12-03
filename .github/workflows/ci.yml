@@ -112,7 +112,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
+      - name: Set up SSH key for EC2
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
@@ -125,7 +125,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@ec2-54-211-187-236.compute-1.amazonaws.com << EOF
-          cd app/api-wellio-fit$
+          cd app/api-wellio-fit
           git pull origin main
           docker-compose down
           docker-compose up --build -d
