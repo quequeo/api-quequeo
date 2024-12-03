@@ -1,7 +1,7 @@
 name: wellio-fit
 services:
   app:
-    container_name: wellio-fit
+    container_name: wellio-fit-api
     build:
       context: .
       args:

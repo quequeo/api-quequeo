@@ -1,6 +1,5 @@
 FROM ruby:3.2.4-slim-bullseye AS builder
 
-# Install dependencies (PostgreSQL, Node.js, Yarn, etc.)
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -20,7 +19,6 @@ RUN bundle clean --force
 
 FROM ruby:3.2.4-slim-bullseye
 
-# Install dependencies (PostgreSQL, Node.js, Yarn, etc.)
 RUN apt-get update -qq && \
     apt-get install -y make --no-install-recommends \
         libpq-dev \
