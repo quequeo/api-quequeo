@@ -1,68 +1,68 @@
-name: CD Pipeline
+# name: CD Pipeline
 
-on:
-  workflow_run:
-    # workflows: ["CI Pipeline"]
-    branches: [ main ]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["CI Pipeline"]
+#     branches: [ main ]
+#     types:
+#       - completed
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: self-hosted
+#     runs-on: self-hosted
 
-    # Dockerhub pull + delete + run
-    # steps:
-    #   - name: Pull the Docker image
-    #     run: sudo docker pull monitoapps/api-wellio-fit:latest
-    #   - name: Delete the old docker container
-    #     run: sudo docker rm -f api-wellio-fit-container || true
-    #   - name: Run the Docker container
-    #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container monitoapps/api-wellio-fit:latest
+#     # Dockerhub pull + delete + run
+#     # steps:
+#     #   - name: Pull the Docker image
+#     #     run: sudo docker pull monitoapps/api-wellio-fit:latest
+#     #   - name: Delete the old docker container
+#     #     run: sudo docker rm -f api-wellio-fit-container || true
+#     #   - name: Run the Docker container
+#     #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container monitoapps/api-wellio-fit:latest
 
-    # Github Container Registry pull + delete + run
-    # steps:
-    #   - name: Login to GitHub Container Registry
-    #     run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "quequeo" --password-stdin
+#     # Github Container Registry pull + delete + run
+#     # steps:
+#     #   - name: Login to GitHub Container Registry
+#     #     run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "quequeo" --password-stdin
 
-    #   - name: Pull the Docker image
-    #     run: sudo docker pull ghcr.io/quequeo/api-wellio-fit:latest
+#     #   - name: Pull the Docker image
+#     #     run: sudo docker pull ghcr.io/quequeo/api-wellio-fit:latest
 
-    #   - name: Delete the old Docker container
-    #     run: sudo docker rm -f api-wellio-fit-container || true
+#     #   - name: Delete the old Docker container
+#     #     run: sudo docker rm -f api-wellio-fit-container || true
 
-    #   - name: Run the Docker container
-    #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container ghcr.io/quequeo/api-wellio-fit:latest
+#     #   - name: Run the Docker container
+#     #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container ghcr.io/quequeo/api-wellio-fit:latest
 
-    # AWS ECR pull + delete + run
-    steps:
-      - name: Install unzip
-        run: sudo apt-get install unzip -y
+#     # AWS ECR pull + delete + run
+#     steps:
+#       - name: Install unzip
+#         run: sudo apt-get install unzip -y
         
-      - name: Install AWS CLI using apt
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip -u awscliv2.zip
-          sudo ./aws/install --update
+#       - name: Install AWS CLI using apt
+#         run: |
+#           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#           unzip -u awscliv2.zip
+#           sudo ./aws/install --update
 
-      - name: Verify AWS CLI version
-        run: aws --version
+#       - name: Verify AWS CLI version
+#         run: aws --version
 
-      - name: Set up AWS CLI
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region us-east-1
+#       - name: Set up AWS CLI
+#         run: |
+#           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws configure set default.region us-east-1
 
-      - name: Login to ECR
-        run: aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
+#       - name: Login to ECR
+#         run: aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
 
-      - name: Pull the Docker image
-        run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#       - name: Pull the Docker image
+#         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
 
-      - name: Delete the old Docker container
-        run: sudo docker rm -f api-wellio-fit-container || true
+#       - name: Delete the old Docker container
+#         run: sudo docker rm -f api-wellio-fit-container || true
 
-      - name: Run the Docker container
-        run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#       - name: Run the Docker container
+#         run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
