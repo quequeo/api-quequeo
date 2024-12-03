@@ -3,10 +3,10 @@ current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bu
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241129-14619-x0s8k7 sitelibdir\=./.gem.20241129-14619-x0s8k7 clean
+make DESTDIR\= sitearchdir\=./.gem.20241203-23494-4jcad6 sitelibdir\=./.gem.20241203-23494-4jcad6 clean
 
 current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241129-14619-x0s8k7 sitelibdir\=./.gem.20241129-14619-x0s8k7
+make DESTDIR\= sitearchdir\=./.gem.20241203-23494-4jcad6 sitelibdir\=./.gem.20241203-23494-4jcad6
 compiling bcrypt_ext.c
 bcrypt_ext.c:41:38: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
     args.size   = NIL_P(input) ? 0 : RSTRING_LEN(input);
@@ -27,8 +27,8 @@ linking shared-object bcrypt_ext.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241129-14619-x0s8k7 sitelibdir\=./.gem.20241129-14619-x0s8k7 install
-/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20241129-14619-x0s8k7
+make DESTDIR\= sitearchdir\=./.gem.20241203-23494-4jcad6 sitelibdir\=./.gem.20241203-23494-4jcad6 install
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20241203-23494-4jcad6
 
 current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241129-14619-x0s8k7 sitelibdir\=./.gem.20241129-14619-x0s8k7 clean
+make DESTDIR\= sitearchdir\=./.gem.20241203-23494-4jcad6 sitelibdir\=./.gem.20241203-23494-4jcad6 clean
