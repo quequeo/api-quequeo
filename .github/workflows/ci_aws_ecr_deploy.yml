@@ -1,0 +1,140 @@
+name: CI AWS ECR Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  scan_ruby:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install JavaScript dependencies
+        run: echo "No JavaScript dependencies to audit"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_TEST_DB: wellio-fit-test
+      DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+  
+    services:
+      postgres:
+        image: postgres
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 123456
+          POSTGRES_TEST_DB: wellio-fit-test
+          DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+  
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+  
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --verbose
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until pg_isready -h localhost -U postgres; do
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+  
+      - name: Prepare the database
+        run: bin/rails db:prepare --verbose
+  
+      - name: Run RSpec tests
+        run: bundle exec rspec --format documentation
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    # AWS ECR login + build + push
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up AWS CLI
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region us-east-1
+
+      - name: AWS ECR Login
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
+  
+      - name: Build Docker image
+        run: docker build -t monitoapps/api-wellio-fit .
+
+      - name: Tag Docker image
+        run: docker tag monitoapps/api-wellio-fit:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+
+      - name: Push Docker image to ECR
+        run: docker push 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
