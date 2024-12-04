@@ -24,11 +24,11 @@ jobs:
 
       - name: Add EC2 to known_hosts
         run: |
-          ssh-keyscan -H "ec2-54-211-187-236.compute-1.amazonaws.com" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Deploy to EC2 (Git pull)
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@ec2-54-211-187-236.compute-1.amazonaws.com << EOF
+          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
           cd app/api-wellio-fit
           git pull origin main
           docker-compose down
