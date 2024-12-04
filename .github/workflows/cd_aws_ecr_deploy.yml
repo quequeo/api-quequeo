@@ -36,10 +36,10 @@ jobs:
         run: aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Pull the Docker image
-        run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+        run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
 
       - name: Delete the old Docker container
-        run: sudo docker rm -f api-wellio-fit-container || true
+        run: sudo docker rm -f api-quequeo-container || true
 
       - name: Run the Docker container
-        run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+        run: sudo docker run -d -p 3000:3000 --name api-quequeo-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest

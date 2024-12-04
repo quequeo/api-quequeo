@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RAILS_ROOT="/var/www/wellio-fit/current"
+RAILS_ROOT="/var/www/api-quequeo/current"
 
 # Wait for Postgres to be ready
 # until PGPASSWORD="${POSTGRES_PASSWORD}" pg_isready -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" -U "${POSTGRES_USER}"; do

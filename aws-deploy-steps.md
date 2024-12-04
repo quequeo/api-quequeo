@@ -41,7 +41,7 @@
 2. **Navigate to the app directory**.
     (example path)
     ```bash
-    cd /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit
+    cd /Users/jaime/Desktop/Apps/quequeo/api-quequeo
     ```
 
 3. **(Optional) Prepare the app**:
@@ -56,14 +56,14 @@
     ```
     Example:
     ```bash
-    rsync -avz -e "ssh -i Wellio-API-AWS-RSA-Key.pem" --exclude='.git' --exclude='vendor/bundle' /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit ubuntu@ec2-52-87-226-55.compute-1.amazonaws.com:/home/ubuntu/app
+    rsync -avz -e "ssh -i quequeo-api-key-aws.pem" --exclude='.git' --exclude='vendor/bundle' /Users/jaime/Desktop/Apps/quequeo/api-quequeo ubuntu@ec2-52-87-226-55.compute-1.amazonaws.com:/home/ubuntu/app
     ```
 ### **4. Build and Run the Application**
 
 1. **Navigate to the app folder on the EC2 instance**:
 (example path)
     ```bash
-    cd app/api-wellio-fit
+    cd app/api-quequeo
     ```
 
 2. **Build the Docker containers**:

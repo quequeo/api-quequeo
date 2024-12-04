@@ -23,13 +23,13 @@ local.database: local.database.development local.database.test
 local.database.development:
 	@$(call MSG, "Setting up [development] database")
 	docker-compose -f docker-compose.yml exec \
-	--env DATABASE_URL=postgresql://postgres:postgres@db/wellio-fit-development app \
+	--env DATABASE_URL=postgresql://postgres:postgres@db/api-quequeo-development app \
 	bundle exec rake db:drop db:create db:migrate
 
 local.database.test:
 	@$(call MSG, "Setting up [test] database")
 	docker-compose -f docker-compose.yml exec \
-	--env DATABASE_URL=postgresql://postgres:postgres@db/wellio-fit-test app \
+	--env DATABASE_URL=postgresql://postgres:postgres@db/api-quequeo-test app \
 	bundle exec rake db:drop db:create db:migrate
 
 local.shell:

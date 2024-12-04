@@ -1,7 +1,7 @@
-name: wellio-fit
+name: quequeo
 services:
   app:
-    container_name: wellio-fit-api
+    container_name: api-quequeo
     build:
       context: . # use the current directory as the build context
       args:
@@ -11,14 +11,14 @@ services:
     ports:
       - "3000:3000" # map the container port to the host port
     volumes:
-      -  .:/var/www/wellio-fit/current
+      -  .:/var/www/api-quequeo/current
   db:
-    container_name: wellio-fit-database
+    container_name: api-quequeo-database
     image: postgres:15
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=wellio-fit-development
+      - POSTGRES_DB=api-quequeo-development
     volumes:
       - db_data:/var/lib/postgresql/data # persist data even if container shuts down
 

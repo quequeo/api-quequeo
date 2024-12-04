@@ -15,11 +15,11 @@
 #     # Dockerhub pull + delete + run
 #     # steps:
 #     #   - name: Pull the Docker image
-#     #     run: sudo docker pull monitoapps/api-wellio-fit:latest
+#     #     run: sudo docker pull monitoapps/api-quequeo:latest
 #     #   - name: Delete the old docker container
-#     #     run: sudo docker rm -f api-wellio-fit-container || true
+#     #     run: sudo docker rm -f api-quequeo-container || true
 #     #   - name: Run the Docker container
-#     #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container monitoapps/api-wellio-fit:latest
+#     #     run: sudo docker run -d -p 3000:3000 --name api-quequeo-container monitoapps/api-quequeo:latest
 
 #     # Github Container Registry pull + delete + run
 #     # steps:
@@ -27,13 +27,13 @@
 #     #     run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "quequeo" --password-stdin
 
 #     #   - name: Pull the Docker image
-#     #     run: sudo docker pull ghcr.io/quequeo/api-wellio-fit:latest
+#     #     run: sudo docker pull ghcr.io/quequeo/api-quequeo:latest
 
 #     #   - name: Delete the old Docker container
-#     #     run: sudo docker rm -f api-wellio-fit-container || true
+#     #     run: sudo docker rm -f api-quequeo-container || true
 
 #     #   - name: Run the Docker container
-#     #     run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container ghcr.io/quequeo/api-wellio-fit:latest
+#     #     run: sudo docker run -d -p 3000:3000 --name api-quequeo-container ghcr.io/quequeo/api-quequeo:latest
 
 #     # AWS ECR pull + delete + run
 #     steps:
@@ -56,13 +56,13 @@
 #           aws configure set default.region us-east-1
 
 #       - name: Login to ECR
-#         run: aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
+#         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
 
 #       - name: Pull the Docker image
-#         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
 
 #       - name: Delete the old Docker container
-#         run: sudo docker rm -f api-wellio-fit-container || true
+#         run: sudo docker rm -f api-quequeo-container || true
 
 #       - name: Run the Docker container
-#         run: sudo docker run -d -p 3000:3000 --name api-wellio-fit-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#         run: sudo docker run -d -p 3000:3000 --name api-quequeo-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest

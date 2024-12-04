@@ -63,15 +63,15 @@ jobs:
       RAILS_ENV: test
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_TEST_DB: wellio-fit-test
-      DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+      POSTGRES_TEST_DB: api-quequeo-test
+      DATABASE_URL: postgres://postgres:123456@localhost:5432/api-quequeo-test
     services:
       postgres:
         image: postgres
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 123456
-          POSTGRES_DB: wellio-fit-test
+          POSTGRES_DB: api-quequeo-test
         ports:
           - 5432:5432
         options: >-

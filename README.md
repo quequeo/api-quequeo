@@ -1,6 +1,6 @@
-# API Wellio Fit 🚀
+# API Quequeo 🚀
 
-Bienvenido a __API Wellio Fit__, una API desarrollada con __Ruby on Rails 8__ y __Ruby 3.2.4__, diseñada para funcionar dentro de un entorno Dockerizado. 
+Bienvenido a __API Quequeo__, una API desarrollada con __Ruby on Rails 8__ y __Ruby 3.2.4__, diseñada para funcionar dentro de un entorno Dockerizado. 
 
 ## Requisitos del Sistema 🛠️
 
@@ -12,8 +12,8 @@ __Docker Compose: 2.x+__
 ⚙️ **Configuración Inicial** 
 1. Clona el repositorio
    ```bash
-   git clone https://github.com/tu-usuario/api-wellio-fit.git
-   cd api-wellio-fit
+   git clone https://github.com/tu-usuario/api-quequeo.git
+   cd api-quequeo
 2. Construye la imagen de Docker y lanza la aplicación
     ```bash
     docker-compose build

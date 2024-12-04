@@ -1,13 +1,13 @@
-current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
+current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 checking for whether -std=gnu99 is accepted as CFLAGS... yes
 creating Makefile
 
-current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
+current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
 make DESTDIR\= sitearchdir\=./.gem.20241203-24677-o3bdmz sitelibdir\=./.gem.20241203-24677-o3bdmz clean
 
-current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
+current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
 make DESTDIR\= sitearchdir\=./.gem.20241203-24677-o3bdmz sitelibdir\=./.gem.20241203-24677-o3bdmz
 compiling constants.c
 compiling lexer.c
@@ -21,9 +21,9 @@ compiling unescape.c
 linking shared-object rbs_extension.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
-current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
+current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
 make DESTDIR\= sitearchdir\=./.gem.20241203-24677-o3bdmz sitelibdir\=./.gem.20241203-24677-o3bdmz install
 /usr/bin/install -c -m 0755 rbs_extension.bundle ./.gem.20241203-24677-o3bdmz
 
-current directory: /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
+current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.6.1/ext/rbs_extension
 make DESTDIR\= sitearchdir\=./.gem.20241203-24677-o3bdmz sitelibdir\=./.gem.20241203-24677-o3bdmz clean

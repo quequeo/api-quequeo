@@ -66,8 +66,8 @@
 #       RAILS_ENV: test
 #       POSTGRES_USER: postgres
 #       POSTGRES_PASSWORD: 123456
-#       POSTGRES_TEST_DB: wellio-fit-test
-#       DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+#       POSTGRES_TEST_DB: api-quequeo-test
+#       DATABASE_URL: postgres://postgres:123456@localhost:5432/api-quequeo-test
   
 #     services:
 #       postgres:
@@ -76,8 +76,8 @@
 #           RAILS_ENV: test
 #           POSTGRES_USER: postgres
 #           POSTGRES_PASSWORD: 123456
-#           POSTGRES_TEST_DB: wellio-fit-test
-#           DATABASE_URL: postgres://postgres:123456@localhost:5432/wellio-fit-test
+#           POSTGRES_TEST_DB: api-quequeo-test
+#           DATABASE_URL: postgres://postgres:123456@localhost:5432/api-quequeo-test
 #         ports:
 #           - 5432:5432
 #         options: >-
@@ -128,10 +128,10 @@
 #     #     run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
 #     #   - name: Build the Docker image
-#     #     run: docker build -t monitoapps/api-wellio-fit:latest .
+#     #     run: docker build -t monitoapps/api-quequeo:latest .
 
 #     #   - name: Push to Docker Hub
-#     #     run: docker push monitoapps/api-wellio-fit:latest
+#     #     run: docker push monitoapps/api-quequeo:latest
 
 #     # Github Container Registry login + build + push
 #     # steps:
@@ -142,10 +142,10 @@
 #     #     run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u quequeo --password-stdin
       
 #     #   - name: Build the Docker image
-#     #     run: docker build -t ghcr.io/quequeo/api-wellio-fit:latest .
+#     #     run: docker build -t ghcr.io/quequeo/api-quequeo:latest .
 
 #     #   - name: Push to GitHub Container Registry
-#     #     run: docker push ghcr.io/quequeo/api-wellio-fit:latest
+#     #     run: docker push ghcr.io/quequeo/api-quequeo:latest
 
 #     # AWS ECR login + build + push
 #     steps:
@@ -160,12 +160,12 @@
 
 #       - name: AWS ECR Login
 #         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
-  
+
 #       - name: Build Docker image
-#         run: docker build -t monitoapps/api-wellio-fit .
+#         run: docker build -t monitoapps/api-quequeo .
 
 #       - name: Tag Docker image
-#         run: docker tag monitoapps/api-wellio-fit:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#         run: docker tag monitoapps/api-quequeo:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
 
 #       - name: Push Docker image to ECR
-#         run: docker push 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-wellio-fit:latest
+#         run: docker push 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest

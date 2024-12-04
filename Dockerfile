@@ -27,19 +27,19 @@ RUN apt-get update -qq && \
 
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 
-RUN mkdir -p /var/www/wellio-fit/current \
-             /var/www/wellio-fit/current/vendor \
-             /var/www/wellio-fit/current/tmp \
+RUN mkdir -p /var/www/api-quequeo/current \
+             /var/www/api-quequeo/current/vendor \
+             /var/www/api-quequeo/current/tmp \
              tmp/pids
 
-ENV RAILS_ROOT /var/www/wellio-fit/current
+ENV RAILS_ROOT /var/www/api-quequeo/current
 
-COPY . /var/www/wellio-fit/current/
+COPY . /var/www/api-quequeo/current/
 
 COPY docker-entry.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entry.sh
 
-WORKDIR "/var/www/wellio-fit/current"
+WORKDIR "/var/www/api-quequeo/current"
 
 EXPOSE 3000
 

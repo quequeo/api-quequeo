@@ -30,7 +30,7 @@ jobs:
         if: false
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
-          cd app/api-wellio-fit
+          cd app/api-quequeo
           git pull origin main
           docker-compose down
           docker-compose build

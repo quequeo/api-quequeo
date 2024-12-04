@@ -86,7 +86,7 @@ warnflags = -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by
 cppflags = 
 CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -fno-common -pipe -fvisibility=hidden $(ARCH_FLAG)
-INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) -I/Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/include -I/Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/ext
+INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) -I/Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/include -I/Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/ext
 DEFS     = 
 CPPFLAGS =  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) -fdeclspec $(ARCH_FLAG)
@@ -138,7 +138,7 @@ DISTCLEANDIRS =
 extout = 
 extout_prefix = 
 target_prefix = /prism
-LOCAL_LIBS =  /Users/jaime/Desktop/Apps/wellio-fit/api-wellio-fit/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/build/libprism.a
+LOCAL_LIBS =  /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/prism-1.2.0/build/libprism.a
 LIBS = $(LIBRUBYARG_SHARED)  -lpthread  
 ORIG_SRCS = api_node.c api_pack.c extension.c
 SRCS = $(ORIG_SRCS) 
