@@ -8,12 +8,15 @@ default: &default
   username:  postgres
   password: postgres
   port: 5432
+
 development:
   <<: *default
   database: api-quequeo-development
+
 test:
   <<: *default
   database: api-quequeo-test
+
 production:
   <<: *default
-    database: api-quequeo-production
+  database: api-quequeo-production
