@@ -1,0 +1,24 @@
+name: CD Docker Hub Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Docker Hub Pipeline"]
+    branches: [ main ]
+    types:
+      - completed
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    # Docker Hub Pull & Run
+    steps:
+      - name: Pull the Docker image
+        run: sudo docker pull monitoapps/api-quequeo:latest
+
+      - name: Delete the old docker container
+        run: sudo docker rm -f api-quequeo-container || true
+
+      - name: Run the Docker container
+        run: sudo docker run -d -p 3000:3000 --name api-quequeo-container monitoapps/api-quequeo:latest

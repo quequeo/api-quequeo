@@ -18,6 +18,8 @@
     ```bash
     sudo apt update && sudo apt upgrade -y
     sudo apt install -y docker.io
+    sudo apt install git
+    sudo apt install make
     ```
 
 2. **Install Docker Compose**:
