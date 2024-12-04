@@ -4,13 +4,16 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-
+  host: db
+  username:  postgres
+  password: postgres
+  port: 5432
 development:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: api-quequeo-development
+test:
+  <<: *default
+  database: api-quequeo-test
+production:
+  <<: *default
+    database: api-quequeo-production
