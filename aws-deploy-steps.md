@@ -14,12 +14,16 @@
     ```
 
 ### **2. Install Necessary Software**
-1. **Update the instance and install Docker**:
+1. **Update the instance, install Docker, Git, Make, Unzip and AWS CLI**:
     ```bash
     sudo apt update && sudo apt upgrade -y
     sudo apt install -y docker.io
     sudo apt install git
     sudo apt install make
+    sudo apt-get install unzip -y
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip -u awscliv2.zip
+    sudo ./aws/install --update
     ```
 
 2. **Install Docker Compose**:
@@ -32,6 +36,7 @@
     ```bash
     docker --version
     docker-compose --version
+    aws --version
     ```
 
 ### **3. Transfer Files to the Instance**
