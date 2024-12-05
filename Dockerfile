@@ -12,9 +12,7 @@ COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.4.13
 
 WORKDIR /tmp
-ARG BUNDLE_WITHOUT="development test"
-RUN bundle config set --global without "${BUNDLE_WITHOUT}"
-RUN MAKE="make --jobs 8" bundle install --jobs=8
+RUN MAKE="make --jobs 8" bundle install --jobs=8 && bundle check
 RUN bundle clean --force
 
 FROM ruby:3.2.4-slim-bullseye
@@ -23,7 +21,9 @@ RUN apt-get update -qq && \
     apt-get install -y make --no-install-recommends \
         libpq-dev \
         nodejs \
-        postgresql-client
+        postgresql-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 

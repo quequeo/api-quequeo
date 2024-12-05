@@ -39,7 +39,7 @@ jobs:
         run: sudo docker pull 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
 
       - name: Delete the old Docker container
-        run: sudo docker rm -f api-quequeo-container || true
+        run: sudo docker rm -f api-quequeo || true
 
       - name: Run the Docker container
-        run: sudo docker run -d -p 3000:3000 --name api-quequeo-container 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
+        run: sudo docker run -d -p 3000:3000 --name api-quequeo 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest

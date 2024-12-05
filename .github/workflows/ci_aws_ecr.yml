@@ -112,17 +112,6 @@ jobs:
       - name: Run RSpec tests
         run: bundle exec rspec --format documentation
 
-  print-secrets:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print AWS Secrets
-        run: |
-          echo "ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" > secrets.txt
-          echo "SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> secrets.txt
-
-      - name: Display File Content
-        run: cat secrets.txt
-
   build:
     runs-on: ubuntu-latest
     needs: test
@@ -142,7 +131,7 @@ jobs:
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 663622660063.dkr.ecr.us-east-1.amazonaws.com
   
       - name: Build Docker image
-        run: docker build -t monitoapps/api-quequeo .
+        run: docker build -t monitoapps/api-quequeo . # try this: docker buildx build -t monitoapps/api-quequeo .
 
       - name: Tag Docker image
         run: docker tag monitoapps/api-quequeo:latest 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
