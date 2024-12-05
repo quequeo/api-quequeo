@@ -44,14 +44,11 @@ jobs:
       - name: Run the Docker container
         run: sudo docker run -d -p 3000:3000 --name api-quequeo 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
 
-      - name: View Docker logs
-        run: docker logs api-quequeo
-
-      - name: Deploy with Docker Compose
+      - name: Log to EC2 and deploy with Docker Compose
         run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
           cd app/api-quequeo
           docker-compose down
           docker-compose up -d
-
-      - name: View Docker Compose logs
-        run: docker logs api-quequeo 
+          docker logs api-quequeo
+          EOF
