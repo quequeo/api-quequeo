@@ -1,5 +1,6 @@
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.4/ext/nio4r
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
+/Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 checking for unistd.h... yes
 checking for rb_io_descriptor()... yes
 checking for linux/aio_abi.h... no
@@ -14,10 +15,10 @@ checking for sys/resource.h... yes
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-hm2oi8 sitelibdir\=./.gem.20241203-23494-hm2oi8 clean
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-rc9vm8 sitelibdir\=./.gem.20241205-78303-rc9vm8 clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-hm2oi8 sitelibdir\=./.gem.20241203-23494-hm2oi8
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-rc9vm8 sitelibdir\=./.gem.20241205-78303-rc9vm8
 compiling bytebuffer.c
 compiling monitor.c
 compiling nio4r_ext.c
@@ -361,8 +362,8 @@ linking shared-object nio4r_ext.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-hm2oi8 sitelibdir\=./.gem.20241203-23494-hm2oi8 install
-/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20241203-23494-hm2oi8
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-rc9vm8 sitelibdir\=./.gem.20241205-78303-rc9vm8 install
+/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20241205-78303-rc9vm8
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/nio4r-2.7.4/ext/nio4r
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-hm2oi8 sitelibdir\=./.gem.20241203-23494-hm2oi8 clean
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-rc9vm8 sitelibdir\=./.gem.20241205-78303-rc9vm8 clean

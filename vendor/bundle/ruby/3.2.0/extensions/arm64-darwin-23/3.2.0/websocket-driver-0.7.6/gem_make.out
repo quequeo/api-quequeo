@@ -1,19 +1,20 @@
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
+/Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-207mqz sitelibdir\=./.gem.20241203-23494-207mqz clean
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-yen1sr sitelibdir\=./.gem.20241205-78303-yen1sr clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-207mqz sitelibdir\=./.gem.20241203-23494-207mqz
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-yen1sr sitelibdir\=./.gem.20241205-78303-yen1sr
 compiling websocket_mask.c
 linking shared-object websocket_mask.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-207mqz sitelibdir\=./.gem.20241203-23494-207mqz install
-/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20241203-23494-207mqz
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-yen1sr sitelibdir\=./.gem.20241205-78303-yen1sr install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20241205-78303-yen1sr
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
-make DESTDIR\= sitearchdir\=./.gem.20241203-23494-207mqz sitelibdir\=./.gem.20241203-23494-207mqz clean
+make DESTDIR\= sitearchdir\=./.gem.20241205-78303-yen1sr sitelibdir\=./.gem.20241205-78303-yen1sr clean

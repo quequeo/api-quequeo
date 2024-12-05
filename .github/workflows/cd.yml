@@ -30,6 +30,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
           cd app/api-quequeo
+          git reset --hard origin main
           git pull origin main
           docker-compose down
           docker-compose build

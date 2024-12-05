@@ -1,45 +1,36 @@
-FROM ruby:3.2.4-slim-bullseye AS builder
+# Etapa de construcción (builder)
+FROM ruby:3.2.4-alpine AS builder
 
-RUN apt-get update -qq && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        libpq-dev \
-        nodejs && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
-
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.4.13
+RUN apk update && apk add --no-cache tzdata git \
+    build-base \
+    libpq-dev \
+    make \
+    nodejs \
+    postgresql-client \
+    libc6-compat
 
 WORKDIR /tmp
-RUN MAKE="make --jobs 8" bundle install --jobs=8
-RUN bundle clean --force
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler:2.4.13
+RUN bundle install --jobs=8 --without development test
 
-FROM ruby:3.2.4-slim-bullseye
+# Etapa de ejecución
+FROM ruby:3.2.4-alpine
 
-RUN apt-get update -qq && \
-    apt-get install -y make --no-install-recommends \
-        libpq-dev \
-        nodejs \
-        postgresql-client && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-COPY --from=builder /usr/local/bundle /usr/local/bundle
-
-RUN mkdir -p /var/www/api-quequeo/current \
-             /var/www/api-quequeo/current/vendor \
-             /var/www/api-quequeo/current/tmp \
-             tmp/pids
-
-ENV RAILS_ROOT /var/www/api-quequeo/current
-
-COPY . /var/www/api-quequeo/current/
+RUN apk update && apk add --no-cache tzdata git\
+    libpq-dev \
+    nodejs \
+    postgresql-client \
+    make \
+    libc6-compat
 
 COPY docker-entry.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entry.sh
 
-WORKDIR "/var/www/api-quequeo/current"
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY . /var/www/api-quequeo/current/
+
+WORKDIR /var/www/api-quequeo/current
 
 EXPOSE 3000
 
