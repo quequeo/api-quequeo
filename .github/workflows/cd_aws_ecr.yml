@@ -43,3 +43,15 @@ jobs:
 
       - name: Run the Docker container
         run: sudo docker run -d -p 3000:3000 --name api-quequeo 663622660063.dkr.ecr.us-east-1.amazonaws.com/monitoapps/api-quequeo:latest
+
+      - name: View Docker logs
+        run: docker logs api-quequeo
+
+      - name: Deploy with Docker Compose
+        run: |
+          cd app/api-quequeo
+          docker-compose down
+          docker-compose up -d
+
+      - name: View Docker Compose logs
+        run: docker logs api-quequeo 
