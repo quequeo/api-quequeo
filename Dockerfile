@@ -12,7 +12,7 @@ COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.4.13
 
 WORKDIR /tmp
-RUN MAKE="make --jobs 8" bundle install --jobs=8 && bundle check
+RUN MAKE="make --jobs 8" bundle install --jobs=8
 RUN bundle clean --force
 
 FROM ruby:3.2.4-slim-bullseye
