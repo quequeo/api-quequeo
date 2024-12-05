@@ -32,9 +32,10 @@ jobs:
           cd app/api-quequeo
           git reset --hard origin/main
           git pull origin main
-          docker-compose down
-          docker-compose build
-          docker-compose up -d
+          docker-compose stop app
+          docker-compose rm app
+          docker-compose build app
+          docker-compose up -d app
           EOF
     
 
