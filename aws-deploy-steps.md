@@ -127,3 +127,41 @@
 4. proxy_pass http://<IP_del_contenedor>:<puerto_del_contenedor>;
 5. sudo systemctl restart nginx
 6. sudo systemctl status nginx
+
+
+
+
+### Script for AWS EC2 Instance
+
+```bash
+#!/bin/bash
+
+# Actualización del sistema
+sudo apt update && sudo apt upgrade -y
+
+# Instalación de paquetes necesarios
+sudo apt install -y docker.io git make unzip
+
+# Instalación del AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -u awscliv2.zip
+sudo ./aws/install --update
+rm -f awscliv2.zip
+
+# Instalación de Docker Compose (solo si no está integrado)
+if ! docker compose version > /dev/null 2>&1; then
+  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+fi
+
+# Verificar versiones y guardarlas en un archivo HTML
+mkdir -p /var/www/html
+{
+  echo "<h1>Installed Versions</h1>"
+  echo "<p>Git: $(git --version)</p>"
+  echo "<p>Make: $(make --version | head -n 1)</p>"
+  echo "<p>Docker: $(docker --version)</p>"
+  echo "<p>Docker Compose: $(docker-compose --version)</p>"
+  echo "<p>AWS CLI: $(aws --version)</p>"
+} > /var/www/html/index.html
+```
