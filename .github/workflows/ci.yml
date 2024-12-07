@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  scan_ruby:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,44 +20,39 @@ jobs:
 
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
+
+  scan_ruby:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use artifacts from setup
+        uses: actions/checkout@v4
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
   scan_js:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Use artifacts from setup
         uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
 
       - name: Install JavaScript dependencies
         run: echo "No JavaScript dependencies to audit"
 
   lint:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Use artifacts from setup
         uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3 --verbose
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
   test:
+    needs: setup
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
@@ -80,17 +75,8 @@ jobs:
           --health-timeout=5s
           --health-retries=5
     steps:
-      - name: Checkout code
+      - name: Use artifacts from setup
         uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Install dependencies
-        run: bundle install --jobs 4 --retry 3 --verbose
 
       - name: Wait for PostgreSQL to be ready
         run: |

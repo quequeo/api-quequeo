@@ -11,7 +11,7 @@ RUN apk update && apk add --no-cache tzdata git \
 
 WORKDIR /tmp
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.4.13
+RUN gem install bundler:2.5.23
 RUN bundle config set frozen false
 ARG BUNDLE_WITHOUT=""
 RUN bundle install --jobs=8
@@ -20,6 +20,7 @@ RUN bundle install --jobs=8
 FROM ruby:3.2.4-alpine
 
 RUN apk update && apk add --no-cache tzdata git\
+    build-base \
     libpq-dev \
     nodejs \
     postgresql-client \
