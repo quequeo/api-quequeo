@@ -11,7 +11,7 @@ RUN apk update && apk add --no-cache tzdata git \
 
 WORKDIR /tmp
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.5.23
+RUN gem install bundler:2.4.13
 RUN bundle config set frozen false
 ARG BUNDLE_WITHOUT=""
 RUN bundle install --jobs=8
