@@ -13,7 +13,8 @@ WORKDIR /tmp
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.4.13
 RUN bundle config set frozen false
-RUN bundle install --jobs=8 --without development test
+ARG BUNDLE_WITHOUT=""
+RUN bundle install --jobs=8
 
 # Etapa de ejecución
 FROM ruby:3.2.4-alpine

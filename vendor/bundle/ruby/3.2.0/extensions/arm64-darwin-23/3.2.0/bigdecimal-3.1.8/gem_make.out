@@ -1,6 +1,5 @@
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
-/Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 checking for __builtin_clz()... yes
 checking for __builtin_clzl()... yes
 checking for __builtin_clzll()... yes
@@ -33,18 +32,18 @@ checking for RB_WARN_CATEGORY_DEPRECATED in ruby.h... yes
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-igmdbk sitelibdir\=./.gem.20241205-78303-igmdbk clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-wlnixb sitelibdir\=./.gem.20241207-9981-wlnixb clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-igmdbk sitelibdir\=./.gem.20241205-78303-igmdbk
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-wlnixb sitelibdir\=./.gem.20241207-9981-wlnixb
 compiling bigdecimal.c
 compiling missing.c
 linking shared-object bigdecimal.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-igmdbk sitelibdir\=./.gem.20241205-78303-igmdbk install
-/usr/bin/install -c -m 0755 bigdecimal.bundle ./.gem.20241205-78303-igmdbk
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-wlnixb sitelibdir\=./.gem.20241207-9981-wlnixb install
+/usr/bin/install -c -m 0755 bigdecimal.bundle ./.gem.20241207-9981-wlnixb
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bigdecimal-3.1.8/ext/bigdecimal
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-igmdbk sitelibdir\=./.gem.20241205-78303-igmdbk clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-wlnixb sitelibdir\=./.gem.20241207-9981-wlnixb clean

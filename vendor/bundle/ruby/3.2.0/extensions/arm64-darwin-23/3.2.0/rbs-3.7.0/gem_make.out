@@ -5,10 +5,10 @@ checking for whether -std=gnu99 is accepted as CFLAGS... yes
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.7.0/ext/rbs_extension
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-p9rigb sitelibdir\=./.gem.20241205-78303-p9rigb clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-10040-a4i1v sitelibdir\=./.gem.20241207-10040-a4i1v clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.7.0/ext/rbs_extension
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-p9rigb sitelibdir\=./.gem.20241205-78303-p9rigb
+make DESTDIR\= sitearchdir\=./.gem.20241207-10040-a4i1v sitelibdir\=./.gem.20241207-10040-a4i1v
 compiling ./../../src/constants.c
 compiling ./../../src/ruby_objs.c
 compiling lexer.c
@@ -22,8 +22,8 @@ linking shared-object rbs_extension.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.7.0/ext/rbs_extension
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-p9rigb sitelibdir\=./.gem.20241205-78303-p9rigb install
-/usr/bin/install -c -m 0755 rbs_extension.bundle ./.gem.20241205-78303-p9rigb
+make DESTDIR\= sitearchdir\=./.gem.20241207-10040-a4i1v sitelibdir\=./.gem.20241207-10040-a4i1v install
+/usr/bin/install -c -m 0755 rbs_extension.bundle ./.gem.20241207-10040-a4i1v
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/rbs-3.7.0/ext/rbs_extension
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-p9rigb sitelibdir\=./.gem.20241205-78303-p9rigb clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-10040-a4i1v sitelibdir\=./.gem.20241207-10040-a4i1v clean

@@ -84,7 +84,7 @@ checked program was:
 DYLD_LIBRARY_PATH=.:/Users/jaime/.rbenv/versions/3.2.4/lib "clang -o conftest -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/arm64-darwin23 -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/ruby/backward -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wundef  -fno-common -pipe conftest.c  -L. -L/Users/jaime/.rbenv/versions/3.2.4/lib -L. -fstack-protector-strong -L/opt/homebrew/opt/gmp/lib     -lruby.3.2  -lpthread  "
 Undefined symbols for architecture arm64:
   "_rb_io_path", referenced from:
-      _t in conftest-ac6eaa.o
+      _t in conftest-c97ad4.o
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -230,7 +230,7 @@ checked program was:
 DYLD_LIBRARY_PATH=.:/Users/jaime/.rbenv/versions/3.2.4/lib "clang -o conftest -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/arm64-darwin23 -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/ruby/backward -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wundef  -fno-common -pipe conftest.c  -L. -L/Users/jaime/.rbenv/versions/3.2.4/lib -L. -fstack-protector-strong -L/opt/homebrew/opt/gmp/lib     -lruby.3.2  -lpthread  "
 Undefined symbols for architecture arm64:
   "_rb_io_closed_p", referenced from:
-      _t in conftest-fe57f5.o
+      _t in conftest-4c171f.o
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -282,7 +282,7 @@ checked program was:
 DYLD_LIBRARY_PATH=.:/Users/jaime/.rbenv/versions/3.2.4/lib "clang -o conftest -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/arm64-darwin23 -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0/ruby/backward -I/Users/jaime/.rbenv/versions/3.2.4/include/ruby-3.2.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wundef  -fno-common -pipe conftest.c  -L. -L/Users/jaime/.rbenv/versions/3.2.4/lib -L. -fstack-protector-strong -L/opt/homebrew/opt/gmp/lib     -lruby.3.2  -lpthread  "
 Undefined symbols for architecture arm64:
   "_rb_io_open_descriptor", referenced from:
-      _t in conftest-df7e7f.o
+      _t in conftest-d22ada.o
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

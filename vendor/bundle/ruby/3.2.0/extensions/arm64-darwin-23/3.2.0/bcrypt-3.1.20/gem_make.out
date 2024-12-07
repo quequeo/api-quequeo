@@ -1,13 +1,12 @@
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
-/Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-77hccj sitelibdir\=./.gem.20241205-78303-77hccj clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-ugn61s sitelibdir\=./.gem.20241207-9981-ugn61s clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-77hccj sitelibdir\=./.gem.20241205-78303-77hccj
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-ugn61s sitelibdir\=./.gem.20241207-9981-ugn61s
 compiling bcrypt_ext.c
 bcrypt_ext.c:41:38: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
     args.size   = NIL_P(input) ? 0 : RSTRING_LEN(input);
@@ -28,8 +27,8 @@ linking shared-object bcrypt_ext.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-77hccj sitelibdir\=./.gem.20241205-78303-77hccj install
-/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20241205-78303-77hccj
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-ugn61s sitelibdir\=./.gem.20241207-9981-ugn61s install
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20241207-9981-ugn61s
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-77hccj sitelibdir\=./.gem.20241205-78303-77hccj clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-ugn61s sitelibdir\=./.gem.20241207-9981-ugn61s clean

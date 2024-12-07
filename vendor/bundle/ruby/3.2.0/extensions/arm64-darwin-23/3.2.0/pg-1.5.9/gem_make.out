@@ -1,6 +1,5 @@
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/pg-1.5.9/ext
 /Users/jaime/.rbenv/versions/3.2.4/bin/ruby extconf.rb
-/Users/jaime/.rbenv/versions/3.2.4/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
 Calling libpq with GVL unlocked
 checking for pg_config... yes
 Using config values from /opt/homebrew/bin/pg_config
@@ -28,10 +27,10 @@ creating extconf.h
 creating Makefile
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/pg-1.5.9/ext
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-9vyq1o sitelibdir\=./.gem.20241205-78303-9vyq1o clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-tv9a18 sitelibdir\=./.gem.20241207-9981-tv9a18 clean
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/pg-1.5.9/ext
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-9vyq1o sitelibdir\=./.gem.20241205-78303-9vyq1o
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-tv9a18 sitelibdir\=./.gem.20241207-9981-tv9a18
 compiling gvl_wrappers.c
 In file included from gvl_wrappers.c:6:
 In file included from ./pg.h:60:
@@ -246,9 +245,9 @@ linking shared-object pg_ext.bundle
 ld: warning: ignoring duplicate libraries: '-lruby.3.2'
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/pg-1.5.9/ext
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-9vyq1o sitelibdir\=./.gem.20241205-78303-9vyq1o install
-/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20241205-78303-9vyq1o
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-tv9a18 sitelibdir\=./.gem.20241207-9981-tv9a18 install
+/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20241207-9981-tv9a18
 installing pg_ext libraries
 
 current directory: /Users/jaime/Desktop/Apps/quequeo/api-quequeo/vendor/bundle/ruby/3.2.0/gems/pg-1.5.9/ext
-make DESTDIR\= sitearchdir\=./.gem.20241205-78303-9vyq1o sitelibdir\=./.gem.20241205-78303-9vyq1o clean
+make DESTDIR\= sitearchdir\=./.gem.20241207-9981-tv9a18 sitelibdir\=./.gem.20241207-9981-tv9a18 clean
