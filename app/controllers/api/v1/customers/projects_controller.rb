@@ -4,9 +4,19 @@ class Api::V1::Customers::ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = @user.projects
+    @projects = @user.projects.includes(:logo, images_attachments: :blob)
 
-    render json: @projects
+    projects_with_attachments = @projects.map do |project|
+      {
+        id: project.id,
+        title: project.title,
+        description: project.description,
+        logo_url: project.logo.attached? ? url_for(project.logo) : nil,
+        images_urls: project.images.attached? ? project.images.map { |image| url_for(image) } : []
+      }
+    end
+  
+    render json: projects_with_attachments
   end
 
   # GET /projects/1

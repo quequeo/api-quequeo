@@ -4,9 +4,11 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = @user.projects
+    @projects = @user.projects.with_attached_logo.with_attached_images
 
-    render json: @projects
+    projects_with_attachments = @projects.map(&:build_json)
+  
+    render json: projects_with_attachments
   end
 
   # GET /projects/1
