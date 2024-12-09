@@ -1,4 +1,4 @@
-class Api::V1::ProjectsController < ApplicationController
+class Api::V1::Customers::ProjectsController < ApplicationController
   before_action :set_user, only: %i[ index create show update destroy ]
   before_action :set_project, only: %i[ show update destroy ]
 
@@ -19,11 +19,12 @@ class Api::V1::ProjectsController < ApplicationController
     @project = @user.projects.create(project_params)
 
     if @project.save
-      render json: @project, status: :created, location: @project
+      render json: @project, status: :created
     else
       render json: @project.errors, status: :unprocessable_entity
     end
   end
+
 
   # PATCH/PUT /projects/1
   def update
@@ -51,6 +52,6 @@ class Api::V1::ProjectsController < ApplicationController
 
 
     def project_params
-      params.expect(project: [ :title, :description, :url ])
+      params.require(:project).permit(:title, :description, :logo, images: [])
     end
 end
