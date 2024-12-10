@@ -9,6 +9,6 @@ RAILS_ROOT="/var/www/api-quequeo/current"
 # done
 
 # bundle exec rails db:create
-# bundle exec rails db:migrate
+bundle exec rails db:migrate
 
 exec "$@"
