@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       # admin@quequeo.com
       namespace :me do
         resources :projects
+
+        resources :uploads, only: [] do
+          get :presigned_url, on: :collection
+        end
       end
     end
   end
