@@ -18,8 +18,14 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @project = @user.projects.create(project_params)
-
+    @project = @user.projects.new(project_params)
+    if params[:project][:logo].present?
+      @project.logo.attach(params[:project][:logo])
+    end
+    if params[:project][:images].present?
+      @project.images.attach(params[:project][:images])
+    end
+  
     if @project.save
       render json: @project, status: :created
     else
@@ -31,6 +37,12 @@ class Api::V1::Me::ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
+      if params[:project][:logo].present?
+        @project.logo.attach(params[:project][:logo])
+      end
+      if params[:project][:images].present?
+        @project.images.attach(params[:project][:images])
+      end
       render json: @project
     else
       render json: @project.errors, status: :unprocessable_entity

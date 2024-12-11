@@ -1,11 +1,17 @@
 class Api::V1::Me::UploadsController < ApplicationController
   def presigned_url
     s3 = Aws::S3::Resource.new
-    bucket = s3.bucket('arn:aws:s3:::quequeo')
-    obj = bucket.object(params[:file_name])
+    bucket = s3.bucket(ENV['AWS_S3_BUCKET_NAME'])
+    bucket_object = bucket.object(params[:file_name])
+    puts params
+    url = bucket_object.presigned_url(
+      :post, 
+      expires_in: 3600, 
+      content_type: params[:file_type]
+    )
 
-    url = obj.presigned_url(:put, expires_in: 3600, content_type: params[:content_type])
+    puts url
 
-    render json: { url: url }
+    render json: { url: url, fields: {} }
   end
 end
