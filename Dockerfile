@@ -27,6 +27,8 @@ RUN apk update && apk add --no-cache tzdata git\
     make \
     libc6-compat
 
+ENV RAILS_ENV=production
+
 COPY docker-entry.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entry.sh
 

@@ -38,3 +38,4 @@
 
 # Aws Instance key
 /*.pem
+/config/credentials/production.key
