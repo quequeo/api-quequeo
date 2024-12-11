@@ -8,7 +8,14 @@ RAILS_ROOT="/var/www/api-quequeo/current"
 #   sleep 2
 # done
 
-# bundle exec rails db:create
+# Check if the database exists
+if ! bundle exec rails db:exists RAILS_ENV=production; then
+  echo "Database does not exist, creating..."
+  bundle exec rails db:create
+else
+  echo "Database already exists, skipping creation."
+fi
+
 bundle exec rails db:migrate
 
 exec "$@"
