@@ -8,11 +8,13 @@ services:
         BUNDLE_WITHOUT: ""
     env_file:
       - .env
+    environment:
+      - RAILS_ENV=production
     ports:
       - "3000:3000" # map the container port to the host port
     volumes:
       -  .:/var/www/api-quequeo/current
-    command: sh -c "RAILS_ENV=production bundle exec rails server -b '0.0.0.0'"
+    command: sh -c "bundle exec rails server -b '0.0.0.0'"
   db:
     container_name: api-quequeo-database
     image: postgres:15
