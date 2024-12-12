@@ -30,8 +30,25 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
           cd app/api-quequeo
+
+          # Update code
           git reset --hard origin/main
           git pull origin main
+
+          # Config .env file
+          if [ ! -f ".env" ]; then
+            echo "Creating file .env..."
+            echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" > .env
+          else
+            if ! grep -q "RAILS_MASTER_KEY=" .env; then
+              echo "Adding RAILS_MASTER_KEY to .env file..."
+              echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" >> .env
+            else
+              echo "RAILS_MASTER_KEY it's already set in .env file..."
+            fi
+          fi
+
+          # Reset container
           export RAILS_ENV=production
           docker-compose stop app
           docker-compose rm app
