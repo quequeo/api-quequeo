@@ -41,7 +41,7 @@ jobs:
           export POSTGRES_HOST=db
           export POSTGRES_USER=postgres
           export POSTGRES_DB=api-quequeo-production
-          export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          export POSTGRES_PASSWORD=postgres
 
           # Reset container
           docker-compose stop app
