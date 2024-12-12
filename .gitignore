@@ -39,3 +39,6 @@
 # Aws Instance key
 /*.pem
 /config/credentials/production.key
+
+# Ignore byebug
+.byebug_history

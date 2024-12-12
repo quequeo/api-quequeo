@@ -51,9 +51,9 @@ jobs:
           # Reset container
           export RAILS_ENV=production
           docker-compose stop app
-          docker-compose rm app
+          docker-compose rm -f app
           docker-compose build app
-          docker-compose up -d app
+          docker-compose up -d --remove-orphans app
           EOF
     
 
