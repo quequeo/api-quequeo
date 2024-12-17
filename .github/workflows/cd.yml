@@ -1,0 +1,58 @@
+name: CD Pipeline
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    branches: [ main ]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up SSH key for EC2
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      
+      - name: Add EC2 to known_hosts
+        run: |
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+      
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << EOF
+          cd app/api-quequeo
+          
+          # Pull latest code
+          git fetch origin
+          git reset --hard origin/main
+          
+          # Setup environment
+          export RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
+          export RAILS_ENV=production
+          export DATABASE_URL=${{ secrets.DATABASE_URL }}
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          export AWS_REGION=${{ secrets.AWS_REGION }}
+          export AWS_BUCKET=${{ secrets.AWS_BUCKET }}
+          
+          # Install dependencies
+          bundle config set deployment 'true'
+          bundle install
+          
+          # Prepare database
+          bundle exec rails db:migrate
+          
+          # Precompile assets
+          bundle exec rails assets:precompile
+          
+          # Restart server (adjust to your server setup)
+          sudo systemctl restart puma
+          # or if using passenger
+          # passenger-config restart-app ~/app/api-quequeo
+          EOF
