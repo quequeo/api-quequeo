@@ -14,14 +14,15 @@ gem "dotenv-rails"
 gem 'aws-sdk-s3', require: false
 
 group :development, :test do
-  gem "debug"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
+  
+  # RSpec
   gem "rspec-rails", "~> 6.0"
   gem "factory_bot_rails"
   gem "faker"
-  gem "byebug"
-end
 
-group :test do
+  # Debug
+  gem "debug"
+  gem "byebug"
 end

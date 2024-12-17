@@ -3,7 +3,7 @@ services:
   app:
     container_name: api-quequeo
     build:
-      context: . # use the current directory as the build context
+      context: .
       args:
         BUNDLE_WITHOUT: ""
     env_file:
@@ -11,9 +11,11 @@ services:
     environment:
       - RAILS_ENV=production
     ports:
-      - "3000:3000" # map the container port to the host port
+      - "3000:3000"
     volumes:
       -  .:/var/www/api-quequeo/current
+    stdin_open: true
+    tty: true
     command: sh -c "bundle exec rails server -b '0.0.0.0'"
   db:
     container_name: api-quequeo-database
@@ -28,4 +30,4 @@ services:
 
 volumes:
   db_data:
-    driver: local # default
+    driver: local

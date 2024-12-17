@@ -56,16 +56,16 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find_by(email: 'admin@quequeo.com')
-    end
+  def set_user
+    @user = User.find_by(email: 'admin@quequeo.com')
+  end
 
-    def set_project
-      @project = @user.projects.find(params.expect(:id))
-    end
+  def set_project
+    @project = @user.projects.find(params.expect(:id))
+  end
 
 
-    def project_params
-      params.require(:project).permit(:title, :description, :logo, images: [])
-    end
+  def project_params
+    params.require(:project).permit(:title, :description, :logo, images: [])
+  end
 end
