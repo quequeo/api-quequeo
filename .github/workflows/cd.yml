@@ -35,14 +35,6 @@ jobs:
           git reset --hard origin/main
           git pull origin main
 
-          # Config environment variables
-          export RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
-          export RAILS_ENV=production
-          export POSTGRES_HOST=db
-          export POSTGRES_USER=postgres
-          export POSTGRES_DB=api-quequeo-production
-          export POSTGRES_PASSWORD=postgres
-
           # Reset container
           docker-compose stop app
           docker-compose rm -f app
