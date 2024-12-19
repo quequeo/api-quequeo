@@ -27,7 +27,10 @@ RUN apk update && apk add --no-cache tzdata git\
     make \
     libc6-compat
 
-ENV RAILS_ENV=production
+ARG RAILS_ENV=production
+ENV RAILS_ENV=${RAILS_ENV}
+
+RUN gem install dotenv
 
 COPY docker-entry.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entry.sh
