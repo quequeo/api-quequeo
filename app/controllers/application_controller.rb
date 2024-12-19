@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Errorable
+
   SECRET_KEY = Rails.application.credentials.secret_key_base
 
   def decode_token
