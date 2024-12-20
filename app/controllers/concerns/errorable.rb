@@ -14,38 +14,38 @@ module Errorable
 
   private
 
-  def no_method_error
+  def no_method_error(exception)
     render json: { 
-      message: "An unexpected error occured",
-      error: error.message
+      message: "An unexpected error occurred",
+      error: exception.message
     }, status: :internal_server_error
   end
 
-  def not_found
+  def not_found(exception)
     render json: {
       message: "The requested resource could not be found",
-      error: error.message
+      error: exception.message
     }, status: :not_found
   end
 
-  def unprocessable_entity
+  def unprocessable_entity(exception)
     render json: {
       message: "The request was unacceptable",
-      error: error.message
+      error: exception.message
     }, status: :unprocessable_entity
   end
 
-  def missing_parameters
+  def missing_parameters(exception)
     render json: {
       message: "The request is missing required parameters",
-      error: error.message
+      error: exception.message
     }, status: :unprocessable_entity
   end
 
-  def method_not_allowed
+  def method_not_allowed(exception)
     render json: {
       message: "The requested method is not allowed",
-      error: error.message
+      error: exception.message
     }, status: :method_not_allowed
   end
 end

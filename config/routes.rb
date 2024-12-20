@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
       # admin@quequeo.com
       namespace :me do
+        resources :users, only: [:show, :update] do
+          patch :avatar, on: :member
+        end
+
         resources :projects
 
         resources :uploads, only: [] do

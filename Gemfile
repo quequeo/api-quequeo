@@ -12,6 +12,7 @@ gem "rack-cors"
 gem "jwt"
 gem "dotenv-rails"
 gem 'aws-sdk-s3', require: false
+gem 'active_model_serializers'
 
 group :development, :test do
   gem "brakeman", require: false

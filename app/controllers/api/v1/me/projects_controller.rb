@@ -8,15 +8,14 @@ class Api::V1::Me::ProjectsController < ApplicationController
       render json: { errors: [ "No user found" ] }, status: :not_found
       return
     end
-
+  
     if @user.projects.empty?
       render json: { errors: [ "No projects found" ] }, status: :not_found
       return
     end
-
+  
     @projects = @user.projects.with_attached_logo
-    projects_with_attachments = @projects.map(&:build_json)
-    render json: projects_with_attachments
+    render json: @projects, each_serializer: ProjectSerializer
   end
 
   # GET /projects/1
