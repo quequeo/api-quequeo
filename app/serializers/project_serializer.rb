@@ -1,5 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :logo_url
+  attributes :id, :title, :description, :logo_url, :user_id
 
   def logo_url
     return nil unless object.logo.attached?

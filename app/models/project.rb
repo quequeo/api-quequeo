@@ -4,6 +4,9 @@ class Project < ApplicationRecord
   has_one_attached :logo, dependent: :destroy
   has_many_attached :images
 
+  validates :title, presence: true
+  validates :description, presence: true
+
   private
 
   def logo_url

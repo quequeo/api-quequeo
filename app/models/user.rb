@@ -13,6 +13,10 @@ class User < ApplicationRecord
     roles.exists?(name: role_name)
   end
 
+  def admin?
+    has_role?('admin')
+  end  
+
   private
 
   def avatar_url

@@ -13,6 +13,7 @@ gem "jwt"
 gem "dotenv-rails"
 gem 'aws-sdk-s3', require: false
 gem 'active_model_serializers'
+gem 'pundit'
 
 group :development, :test do
   gem "brakeman", require: false
@@ -22,6 +23,7 @@ group :development, :test do
   gem "rspec-rails", "~> 6.0"
   gem "factory_bot_rails"
   gem "faker"
+  gem 'database_cleaner-active_record'
 
   # Debug
   gem "debug"

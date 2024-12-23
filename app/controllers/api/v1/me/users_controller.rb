@@ -1,32 +1,33 @@
-class Api::V1::Me::UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update avatar ]
+class Api::V1::Me::UsersController < Api::ApplicationMeController
+  after_action :verify_authorized
+
   # GET /users/1
   def show
-    render json: @user, serializer: UserSerializer
+    authorize current_user
+    render json: current_user, serializer: UserSerializer
   end
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      render json: @user
+    authorize current_user
+    if current_user.update(user_params)
+      render json: current_user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: current_user.errors, status: :unprocessable_entity
     end
   end
 
+  # PATCH /users/1/avatar
   def avatar
-    if @user.update(avatar: params[:avatar])
-      render json: @user
+    authorize current_user
+    if current_user.update(avatar: params[:avatar])
+      render json: current_user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: current_user.errors, status: :unprocessable_entity
     end
   end
 
   private
-
-  def set_user
-    @user ||= User.find_by(email: 'admin@quequeo.com')
-  end
 
   def user_params
     params.require(:project).permit(:email, :avatar)

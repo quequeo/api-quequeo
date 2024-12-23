@@ -1,4 +1,4 @@
-class Api::V1::Me::UploadsController < ApplicationController
+class Api::V1::Me::UploadsController < Api::ApplicationMeController
   def presigned_url
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket("#{ENV["AWS_S3_BUCKET_NAME"]}")

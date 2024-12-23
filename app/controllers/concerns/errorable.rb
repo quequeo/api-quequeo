@@ -33,7 +33,7 @@ module Errorable
       message: "The request was unacceptable",
       error: exception.message
     }, status: :unprocessable_entity
-  end
+  end  
 
   def missing_parameters(exception)
     render json: {

@@ -1,32 +1,25 @@
-class Api::V1::Me::ProjectsController < ApplicationController
-  before_action :set_user, only: %i[ index create show update destroy ]
-  before_action :set_project, only: %i[ show update destroy ]
+class Api::V1::Me::ProjectsController < Api::ApplicationMeController
+  before_action :set_project, only: %i[show update destroy]
+  after_action :verify_authorized
 
   # GET /projects
   def index
-    if @user.nil?
-      render json: { errors: [ "No user found" ] }, status: :not_found
-      return
-    end
-  
-    if @user.projects.empty?
-      render json: { errors: [ "No projects found" ] }, status: :not_found
-      return
-    end
-  
-    @projects = @user.projects.with_attached_logo
+    authorize Project
+    @projects = current_user.projects.with_attached_logo
     render json: @projects, each_serializer: ProjectSerializer
   end
 
   # GET /projects/1
   def show
+    authorize @project
     render json: @project
   end
 
   # POST /projects
   def create
-    @project = @user.projects.new(project_params)
-  
+    @project = current_user.projects.new(project_params)
+    authorize @project
+
     if @project.save
       render json: @project, status: :created
     else
@@ -36,6 +29,7 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
+    authorize @project
     if @project.update(project_params)
       render json: @project
     else
@@ -45,9 +39,9 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   # DELETE /projects/1
   def destroy
+    authorize @project
     if @project.destroy
       @project.logo.purge_later if @project.logo.attached?
-
       head :no_content
     else
       render json: { error: 'Failed to destroy project' }, status: :unprocessable_entity
@@ -56,14 +50,9 @@ class Api::V1::Me::ProjectsController < ApplicationController
 
   private
 
-  def set_user
-    @user ||= User.find_by(email: 'admin@quequeo.com')
-  end
-
   def set_project
-    @project = @user.projects.find params[:id]
+    @project = current_user.projects.find(params[:id])
   end
-
 
   def project_params
     params.require(:project).permit(:title, :description, :logo)
