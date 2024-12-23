@@ -47,4 +47,8 @@ RSpec.configure do |config|
   config.before(:each, type: :controller) do
     request.headers['Content-Type'] = 'application/json'
   end
+
+  config.before(:suite) do
+    Rails.application.routes.default_url_options[:host] = "localhost:3000"
+  end
 end
