@@ -42,5 +42,15 @@ jobs:
           docker-compose build app
           docker-compose up -d --remove-orphans app
           EOF
+
+    outputs:
+      commit_sha: ${{ github.sha }}
+  
+    notify:
+      needs: deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: Output commit SHA
+          run: echo "Deployed commit: ${{ github.sha }}"
     
 
