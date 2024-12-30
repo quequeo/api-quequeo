@@ -1,73 +1,86 @@
 # API Quequeo 🚀
 
-Bienvenido a __API Quequeo__, una API desarrollada con __Ruby on Rails 8__ y __Ruby 3.2.4__, diseñada para funcionar dentro de un entorno Dockerizado. 
+Welcome to __API Quequeo__, a robust API developed with __Ruby on Rails 8__ y __Ruby 3.2.4__, designed to operate seamlessly within a Dockerized environment.
 
-## Requisitos del Sistema 🛠️
+## System Requirements 🛠️
 
 __Ruby: 3.2.4__
 __Rails: 8.0.0__
+__PostgreSQL: 15+__
 __Docker: 20.10+__
 __Docker Compose: 2.x+__
 
-⚙️ **Configuración Inicial** 
-1. Clona el repositorio
+⚙️ **Initial Setip** 
+1. Clone the repository
    ```bash
-   git clone https://github.com/tu-usuario/api-quequeo.git
-   cd api-quequeo
-2. Construye la imagen de Docker y lanza la aplicación
+   git clone https://github.com/your-username/api-quequeo.git
+    cd api-quequeo
+2. Build and launch the application using Docker Compose:
     ```bash
     docker-compose build
     docker-compose up
 ****
-📦 **Base de Datos**
-- La base de datos se crea automáticamente al ejecutar docker-compose build.
+**Database** 📦 
+The database configuration is automated through Docker Compose. Upon running docker-compose build, the PostgreSQL database is initialized using the following environment variables:
+- Database Configuration (default):
+        - Adapter: PostgreSQL
+        - Host: db (via Docker network)
+        - Username: Defined by POSTGRES_USER
+        - Password: Defined by POSTGRES_PASSWORD
+        - Database: api_quequeo_[environment]
 ****
-🧪 **Testing**
-1. Configurar RSpec
-Si RSpec aún no está configurado:
+**Routes** 📚
+For a full list of routes, see config/routes.rb
+****
+**Testing** 🧪 
+This projects uses __RSpec__ for testing. Here's how you can run the tests:
+1. Install RSpec (if not already configured):
     ```bash
     docker-compose run app rails generate rspec:install
-2. Ejecutar las pruebas
+2. Run the test suite:
     ```bash
     docker-compose run app bundle exec rspec
+3. Database cleaning: The test environment uses **database_cleaner** for a clean slate between tests.
 ****
-📋 **Comandos Útiles**
-1. Instalar nuevas gemas
-Si agregas una nueva gema a tu proyecto, recuerda ejecutarlo dentro del contenedor:
+**CI/CD Pipeline** 🛡️
+- CI (Continuous Integration)
+The CI pipeline is configured using **GitHub** Actions and includes:
+    1. Ruby Security Scanning: Tools like brakeman to detect vulnerabilities in Rails.
+    2. Linting: Ensures code quality and style using rubocop.
+    3. RSpec Testing: executes the test suite.
+- CD (Continuous Deployment)
+The deployment process uses **GitHub Actions** to deploy to an EC2 instance via SSH. Upon successful completion of the CI pipeline:
+    1. Pulls the latest code to the EC2 instance.
+    2. Stops and rebuilds the Docker container.
+    3. Launches the updated application.
+****
+**Additional Features** 🔧
+- Authentication: Implemented using JWT.
+- Authorization: Managed by Pundit for role-based access control.
+- File Uploads: Utilizes AWS S3 for storage.
+- Serialization: Active Model Serializers for clean JSON responses.
+**Useful Commands** 📋 
+1. Install new gems:
     ```bash
     docker-compose run app bundle install
-2. Verificar que la gema está instalada
+2. Verify if the gem is installed
     ```bash
-    docker-compose run app bundle list | grep 'nombre_de_la_gema'
-3. Acceder a la consola de Rails del contenedor
+    docker-compose run app bundle list | grep 'gem_name'
+3. Rails console
     ```bash
     docker-compose run app rails console
-4. Acceder a una shell del contenedor
+4. Shell access to the container:
     ```bash
     docker-compose run app sh
 ****
-**Despliegue** 🚢
+**Deployment** 🚢
+1. Development: Run locally using Docker Compose:
+    ```bash
+    docker-compose up
+2. Production: Ensure all environment variables (e.g., POSTGRES_HOST, AWS_S3_BUCKET) are set. Use the CI/CD pipeline for deployment.
+****
+**License** 📜
+This project is licensed under the MIT License. See the LICENSE file for details
 
-- El despliegue de esta aplicación en producción sigue estos pasos generales:
-
-...
-
-**Servicios Adicionales** 🔧
-
-...
-
-**CI/CD con GitHub Actions** 🛡️
-
-Pipeline de integración continua de GitHub Actions, asegurando la calidad del código mediante análisis y pruebas automatizadas, que incluye los siguientes pasos:
-1. Scan de Seguridad en Ruby: Utiliza bundler-audit y otras herramientas para identificar vulnerabilidades en gemas.
-2. Scan de Seguridad en JavaScript: Analiza dependencias de JavaScript utilizando npm audit o herramientas similares.
-3. Linting: Asegura que el código sigue las convenciones de estilo con herramientas como rubocop para Ruby y eslint para JavaScript.
-4. Pruebas Automatizadas: Ejecuta las pruebas de RSpec para validar la funcionalidad de la aplicación.
-
-**Colaboradores** 👥
-
-Autor: Jaime F. García Méndez
-
-**Licencia** 📜
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más información.
+**Author** 👥
+Developed by **Jaime F. García Méndez**
