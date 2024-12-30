@@ -25,5 +25,11 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :web do
+      get "/quequeo/content",             to: "quequeo#content"
+      get "/about_me/content",            to: "about_me#content"
+      get "/work_experience/content",     to: "work_experience#content"
+    end
   end
 end
