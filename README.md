@@ -14,7 +14,7 @@ __Docker Compose: 2.x+__
 1. Clone the repository
    ```bash
    git clone https://github.com/your-username/api-quequeo.git
-    cd api-quequeo
+   cd api-quequeo
 2. Build and launch the application using Docker Compose:
     ```bash
     docker-compose build
@@ -23,13 +23,14 @@ __Docker Compose: 2.x+__
 **Database** 📦 
 The database configuration is automated through Docker Compose. Upon running docker-compose build, the PostgreSQL database is initialized using the following environment variables:
 - Database Configuration (default):
-        - Adapter: PostgreSQL
-        - Host: db (via Docker network)
-        - Username: Defined by POSTGRES_USER
-        - Password: Defined by POSTGRES_PASSWORD
-        - Database: api_quequeo_[environment]
+    - Adapter: PostgreSQL
+    - Host: db (via Docker network)
+    - Username: Defined by POSTGRES_USER
+    - Password: Defined by POSTGRES_PASSWORD
+    - Database: api_quequeo_[environment]
 ****
 **Routes** 📚
+
 For a full list of routes, see config/routes.rb
 ****
 **Testing** 🧪 
@@ -45,20 +46,21 @@ This projects uses __RSpec__ for testing. Here's how you can run the tests:
 **CI/CD Pipeline** 🛡️
 - CI (Continuous Integration)
 The CI pipeline is configured using **GitHub** Actions and includes:
-    1. Ruby Security Scanning: Tools like brakeman to detect vulnerabilities in Rails.
-    2. Linting: Ensures code quality and style using rubocop.
-    3. RSpec Testing: executes the test suite.
+    - Ruby Security Scanning: Tools like brakeman to detect vulnerabilities in Rails.
+    - Linting: Ensures code quality and style using rubocop.
+    - RSpec Testing: executes the test suite.
 - CD (Continuous Deployment)
 The deployment process uses **GitHub Actions** to deploy to an EC2 instance via SSH. Upon successful completion of the CI pipeline:
-    1. Pulls the latest code to the EC2 instance.
-    2. Stops and rebuilds the Docker container.
-    3. Launches the updated application.
+    - Pulls the latest code to the EC2 instance.
+    - Stops and rebuilds the Docker container.
+    - Launches the updated application.
 ****
 **Additional Features** 🔧
 - Authentication: Implemented using JWT.
 - Authorization: Managed by Pundit for role-based access control.
 - File Uploads: Utilizes AWS S3 for storage.
 - Serialization: Active Model Serializers for clean JSON responses.
+***
 **Useful Commands** 📋 
 1. Install new gems:
     ```bash
@@ -77,10 +79,11 @@ The deployment process uses **GitHub Actions** to deploy to an EC2 instance via 
 1. Development: Run locally using Docker Compose:
     ```bash
     docker-compose up
-2. Production: Ensure all environment variables (e.g., POSTGRES_HOST, AWS_S3_BUCKET) are set. Use the CI/CD pipeline for deployment.
+2. Production: 
+Ensure all environment variables (e.g., POSTGRES_HOST, AWS_S3_BUCKET) are set. Use the CI/CD pipeline for deployment.
 ****
 **License** 📜
-This project is licensed under the MIT License. See the LICENSE file for details
+This project is licensed under the MIT License.
 
 **Author** 👥
 Developed by **Jaime F. García Méndez**
