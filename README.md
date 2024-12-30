@@ -1,6 +1,6 @@
 # API Quequeo 🚀
 
-Welcome to __API Quequeo__, a robust API developed with __Ruby on Rails 8__ y __Ruby 3.2.4__, designed to operate seamlessly within a Dockerized environment.
+Welcome to __API Quequeo__, a robust API developed with __Ruby on Rails 8__ and __Ruby 3.2.4__, designed to operate seamlessly within a Dockerized environment.
 
 ## System Requirements 🛠️
 
@@ -10,7 +10,7 @@ __PostgreSQL: 15+__
 __Docker: 20.10+__
 __Docker Compose: 2.x+__
 
-⚙️ **Initial Setip** 
+⚙️ **Initial Setup** 
 1. Clone the repository
    ```bash
    git clone https://github.com/your-username/api-quequeo.git
