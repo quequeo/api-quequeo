@@ -6,7 +6,7 @@ RSpec.describe Web::QuequeoService do
       result = Web::QuequeoService.call[:es]
 
       expect(result[:page_title]).to eq('Sitio Web Quequeo')
-      expect(result[:title]).to eq('React, Ruby on Rails y AWS')
+      expect(result[:title]).to eq('React, Ruby on Rails, AWS y más')
     end
 
     it 'returns content in English when language is "en"' do
