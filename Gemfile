@@ -16,7 +16,7 @@ gem 'active_model_serializers'
 gem 'pundit'
 
 group :development, :test do
-  gem "brakeman", require: false
+  gem "brakeman", '~> 7.0', require: false
   gem "rubocop-rails-omakase", require: false
   
   # RSpec
