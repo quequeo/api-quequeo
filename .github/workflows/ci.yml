@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3 --verbose
 
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager --no-exit-on-warn
+      
+      - name: Clear gem cache
+        run: bundle clean --force
+
   scan_js:
     runs-on: ubuntu-latest
     steps:
