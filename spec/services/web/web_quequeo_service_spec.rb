@@ -13,7 +13,7 @@ RSpec.describe Web::QuequeoService do
       result = Web::QuequeoService.call[:en]
 
       expect(result[:page_title]).to eq('Quequeo Website')
-      expect(result[:title]).to eq('React, Ruby on Rails & AWS')
+      expect(result[:title]).to eq('React, Ruby on Rails, AWS and more')
     end
   end
 end
