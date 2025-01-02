@@ -8,11 +8,11 @@ RSpec.describe Api::Web::QuequeoController, type: :controller do
       allow(Web::QuequeoService).to receive(:call).and_return({
         en: {
           page_title: 'Quequeo Website',
-          title: 'ReactJS, Ruby on Rails & AWS'
+          title: 'React, Ruby on Rails & AWS'
         },
         es: {
           page_title: 'Sitio Web Quequeo',
-          title: 'ReactJS, Ruby on Rails y AWS'
+          title: 'React, Ruby on Rails y AWS'
         }
       })
     end
