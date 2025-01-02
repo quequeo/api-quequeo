@@ -27,7 +27,8 @@ RUN apk add --no-cache \
     libpq \
     postgresql-client \
     nodejs \
-    libc6-compat
+    libc6-compat \
+    build-base
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}

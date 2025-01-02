@@ -1,12 +1,6 @@
 common: &defaults
   key: ENV['SCOUT_APM_KEY']
-
-  # log_level: Verboseness of logs.
-  # - Default: 'info'
-  # - Valid Options: debug, info, warn, error
-  # log_level: debug
-
-
+  log_level: debug
   name: Quequeo API
   monitor: true
 
