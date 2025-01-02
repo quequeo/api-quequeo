@@ -60,6 +60,7 @@ The deployment process uses **GitHub Actions** to deploy to an EC2 instance via 
 - Authorization: Managed by Pundit for role-based access control.
 - File Uploads: Utilizes AWS S3 for storage.
 - Serialization: Active Model Serializers for clean JSON responses.
+- Monitoring: Scout APM for performance monitoring and error tracking.
 ***
 **Useful Commands** 📋 
 1. Install new gems:
@@ -83,7 +84,7 @@ This project uses __Scout APM__ for application performance monitoring and error
     ```bash
     docker-compose up
 2. Production: 
-Ensure all environment variables (e.g., POSTGRES_HOST, AWS_S3_BUCKET) are set. Use the CI/CD pipeline for deployment.
+Ensure all environment variables are set. Use the CI/CD pipeline for deployment.
 ****
 **License** 📜
 This project is licensed under the MIT License.
