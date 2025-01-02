@@ -1,5 +1,5 @@
 common: &defaults
-  key: ENV['SCOUT_APM_KEY']
+  key: ENV["SCOUT_APM_KEY"]
   log_level: debug
   name: Quequeo API
   monitor: true

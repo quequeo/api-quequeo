@@ -75,6 +75,9 @@ The deployment process uses **GitHub Actions** to deploy to an EC2 instance via 
     ```bash
     docker-compose run app sh
 ****
+**Monitoring** 📊
+This project uses __Scout APM__ for application performance monitoring and error tracking.
+****
 **Deployment** 🚢
 1. Development: Run locally using Docker Compose:
     ```bash
