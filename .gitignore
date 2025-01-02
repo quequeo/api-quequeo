@@ -42,3 +42,6 @@
 
 # Ignore byebug
 .byebug_history
+
+# Ignore vendor/bundle
+/vendor/bundle
