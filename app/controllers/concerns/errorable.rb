@@ -10,6 +10,8 @@ module Errorable
     rescue_from ActionController::UnknownFormat, with: :not_found
     rescue_from ActionController::UnknownHttpMethod, with: :method_not_allowed
     rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+    rescue_from ActionController::RoutingError, with: :route_not_found
+    rescue_from StandardError, with: :internal_server_error
   end
 
   private
@@ -47,5 +49,16 @@ module Errorable
       message: "The requested method is not allowed",
       error: exception.message
     }, status: :method_not_allowed
+  end
+
+  def route_not_found
+    render json: { message: "The requested route could not be found" }, status: :not_found
+  end
+
+  def internal_server_error(exception)
+    render json: {
+      message: "An unexpected error occurred",
+      error: exception.message
+    }, status: :internal_server_error
   end
 end

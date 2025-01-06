@@ -194,6 +194,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.8)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-session (2.0.0)
@@ -328,6 +330,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   pundit
+  rack-attack
   rack-cors
   rails (~> 8.0)
   rspec-rails (~> 6.0)
