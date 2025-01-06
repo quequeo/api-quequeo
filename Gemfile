@@ -29,6 +29,5 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 5.0'
 
   # Debug
-  gem "debug"
   gem "byebug"
 end
