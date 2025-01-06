@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::AuthController, type: :controller do
+RSpec.describe Api::Resume::V1::AuthController, type: :controller do
   describe 'POST #register' do
     let(:valid_attributes) { { email: 'test@example.com', password: 'password', password_confirmation: 'password' } }
     let(:invalid_attributes) { { email: '', password: 'password', password_confirmation: 'password' } }

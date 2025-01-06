@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_08_110408) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_171042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,19 +42,28 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_110408) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "resumes", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.string "style"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_projects_on_user_id"
+    t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "resume_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_sections_on_resume_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -75,7 +84,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_110408) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "projects", "users"
+  add_foreign_key "resumes", "users"
+  add_foreign_key "sections", "resumes"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

@@ -13,8 +13,3 @@ unless user.persisted?
   user.roles << admin_role unless user.has_role?("admin")
   user.roles << editor_role unless user.has_role?("editor")
 end
-
-# Create projects for user
-user.projects.find_or_create_by(title: "Quequeo", description: "The best project ever")
-user.projects.find_or_create_by(title: "Rails", description: "The best framework ever")
-user.projects.find_or_create_by(title: "Ruby", description: "The best language ever")

@@ -1,6 +1,9 @@
-class Api::V1::AuthController < Api::ApplicationMeController
+class Api::Resume::V1::AuthController < Api::Resume::ApplicationController
+  before_action :validate_auth_params, only: [:register, :login]
+
+  # POST /register
   def register
-    user = User.new(user_params)
+    user = User.new(auth_params)
     if user.save
       token = encode_token({ user_id: user.id })
       render json: { user: user, token: token }, status: :created
@@ -9,6 +12,7 @@ class Api::V1::AuthController < Api::ApplicationMeController
     end
   end
 
+  # POST /login
   def login
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
@@ -24,11 +28,21 @@ class Api::V1::AuthController < Api::ApplicationMeController
 
   private
 
-  def user_params
+  def auth_params
     params.permit(:email, :password, :password_confirmation)
   end
 
   def encode_token(payload)
     JWT.encode(payload, SECRET_KEY)
+  end
+
+  def validate_auth_params
+    if params[:email].blank?
+      render json: { errors: [ "Email is required" ] }, status: :unprocessable_entity
+    end
+
+    if params[:password].blank?
+      render json: { errors: [ "Password is required" ] }, status: :unprocessable_entity
+    end
   end
 end

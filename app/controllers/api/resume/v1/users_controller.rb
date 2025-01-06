@@ -1,13 +1,13 @@
-class Api::V1::Me::UsersController < Api::ApplicationMeController
+class Api::Resume::V1::UsersController < Api::Resume::ApplicationController
   after_action :verify_authorized
 
-  # GET /users/1
+  # GET /users/:id
   def show
     authorize current_user
     render json: current_user, serializer: UserSerializer
   end
 
-  # PATCH/PUT /users/1
+  # PATCH/PUT /users/:id
   def update
     authorize current_user
     if current_user.update(user_params)
@@ -17,7 +17,7 @@ class Api::V1::Me::UsersController < Api::ApplicationMeController
     end
   end
 
-  # PATCH /users/1/avatar
+  # PATCH /users/:id/avatar
   def avatar
     authorize current_user
     if current_user.update(avatar: params[:avatar])

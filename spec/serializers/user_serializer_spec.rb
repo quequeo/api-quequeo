@@ -13,7 +13,7 @@ RSpec.describe UserSerializer, type: :serializer do
   end
 
   it 'returns a valid avatar_url if an avatar is attached' do
-    user.avatar.attach(io: File.open(Rails.root.join('spec/fixtures/files/test_avatar.png')), filename: 'test_avatar.png')
+    user.avatar.attach(io: File.open(Rails.root.join('spec/fixtures/files/avatar.png')), filename: 'avatar.png')
     expect(serialized_user[:avatar_url]).to be_present
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Me::UsersController, type: :controller do
+RSpec.describe Api::Resume::V1::UsersController, type: :controller do
   include_context "admin quequeo user"
 
   let(:admin_user) { admin_quequeo_user }
