@@ -25,7 +25,8 @@ class Rack::Attack
       "/login.action", 
       "/_all_dbs", 
       "/.DS_Store", 
-      "/s/9333e2430313e2630323e28313/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties"
+      "/s/9333e2430313e2630323e28313/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties",
+      "/dns-query"
     ]
     suspicious_paths.include?(req.path)
   end
