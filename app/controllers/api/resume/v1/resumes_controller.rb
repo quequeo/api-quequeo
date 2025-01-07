@@ -1,11 +1,10 @@
 
 class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
-  after_action :verify_authorized
+  after_action :verify_authorized, except: %i[index create]
   before_action :authorize_resume, only: %i[show update destroy]
 
   # GET /api/resume/v1/resumes
   def index
-    authorize Resume
     resumes = current_user.resumes.includes(:sections)
     render json: resumes, include: :sections, status: :ok
   end

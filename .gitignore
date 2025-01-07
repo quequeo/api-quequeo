@@ -45,3 +45,6 @@
 
 # Ignore vendor/bundle
 /vendor/bundle
+
+# Ignore rspec examples
+/spec/examples.txt
