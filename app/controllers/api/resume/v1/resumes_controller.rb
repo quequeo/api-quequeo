@@ -1,6 +1,6 @@
 
 class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
-  after_action :verify_authorized, except: %i[index create]
+  after_action :verify_authorized, except: %i[index create styles]
   before_action :authorize_resume, only: %i[show update destroy]
 
   # GET /api/resume/v1/resumes
@@ -39,6 +39,10 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
   def destroy
     resume.destroy
     render json: { message: 'Resume deleted successfully' }, status: :ok
+  end
+
+  def styles
+    render json: Resume::STYLES.keys, status: :ok
   end
 
   private

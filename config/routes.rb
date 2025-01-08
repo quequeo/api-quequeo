@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         end
 
         resources :resumes do
+          get :styles, on: :collection
           resources :sections, only: [:create, :update, :destroy], shallow: true
         end
 

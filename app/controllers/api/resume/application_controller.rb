@@ -35,10 +35,12 @@ class Api::Resume::ApplicationController < ActionController::API
   def current_user
     return @current_user if defined?(@current_user)
   
-    payload = decode_token
-    return unless payload
+    begin
+      payload = decode_token
+      return unless payload
   
-    user_id = payload['user_id']
-    @current_user = User.find_by(id: user_id)
+      user_id = payload['user_id']
+      @current_user = User.find_by!(id: user_id)
+    end
   end
 end
