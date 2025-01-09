@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :resume do
-    title { "MyString" }
+    title { Faker::Job.title }
     style { Resume::STYLES.keys.sample }
     association :user
   end

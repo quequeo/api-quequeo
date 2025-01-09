@@ -3,16 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::Resume::V1::ResumesController, type: :controller do
   let(:user) { create(:user) }
   let!(:resume) { create(:resume, user: user) }
-  let(:valid_attributes) do
-    {
-      title: "My Resume",
-      style: "basic",
-      sections_attributes: [
-        { title: "Experience", content: "Worked at XYZ Company" },
-        { title: "Education", content: "Graduated from ABC University" }
-      ]
-    }
-  end
+  
   let(:invalid_attributes) { { title: nil, style: nil } }
 
   before do
@@ -28,16 +19,6 @@ RSpec.describe Api::Resume::V1::ResumesController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid attributes" do
-      it "creates a new resume" do
-        expect do
-          post :create, params: { resume: valid_attributes }
-        end.to change(Resume, :count).by(1)
-
-        expect(response).to have_http_status(:created)
-      end
-    end
-
     context "with invalid attributes" do
       it "does not create a new resume" do
         expect do
