@@ -29,7 +29,7 @@ class Api::Resume::V1::AuthController < Api::Resume::ApplicationController
   private
 
   def auth_params
-    params.permit(:email, :password, :password_confirmation)
+    params.require(:auth).permit(:email, :password, :password_confirmation)
   end
 
   def encode_token(payload)

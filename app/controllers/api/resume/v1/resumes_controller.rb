@@ -5,8 +5,8 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
 
   # GET /api/resume/v1/resumes
   def index
-    resumes = current_user.resumes.includes(:sections)
-    render json: resumes, include: :sections, status: :ok
+    resumes = current_user.resumes.includes([:personal_informations, :work_experiences])
+    render json: resumes, include: [:personal_informations, :work_experiences], status: :ok
   end
 
   # POST /api/resume/v1/resumes
@@ -15,7 +15,7 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
     authorize new_resume
 
     if new_resume.save
-      render json: new_resume, status: :created
+      render json: new_resume, include: [:personal_informations, :work_experiences], status: :created
     else
       render json: { errors: new_resume.errors.full_messages }, status: :unprocessable_entity
     end
@@ -23,7 +23,7 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
 
   # GET /api/resume/v1/resumes/:id
   def show
-    render json: resume, include: :sections, status: :ok
+    render json: resume, include: [:personal_informations, :work_experiences], status: :ok
   end
 
   # PUT /api/resume/v1/resumes/:id
@@ -48,7 +48,7 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
   private
 
   def resume
-    @resume ||= current_user.resumes.includes(:sections).find_by!(id: params[:id])
+    @resume ||= current_user.resumes.includes([:personal_informations, :work_experiences]).find_by!(id: params[:id])
   end
 
   def authorize_resume
@@ -56,6 +56,10 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
   end
 
   def resume_params
-    params.require(:resume).permit(:title, :style, :content, sections_attributes: [:id, :title, :content, :_destroy])
+    params.require(:resume).permit(
+      :title, :style, 
+      personal_informations_attributes: [:id, :content, :_destroy],
+      work_experiences_attributes: [:id, :content, :_destroy]
+    )
   end
 end

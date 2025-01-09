@@ -1,10 +1,20 @@
 class Resume < ApplicationRecord
   belongs_to :user
-  has_many :sections, dependent: :destroy
+  has_many :personal_informations, dependent: :destroy
+  has_many :work_experiences, dependent: :destroy
 
-  accepts_nested_attributes_for :sections, allow_destroy: true
+  accepts_nested_attributes_for :personal_informations, allow_destroy: true
+  accepts_nested_attributes_for :work_experiences, allow_destroy: true
 
-  STYLES = { basic: 'basic', modern: 'modern', professional: 'professional' }.freeze
+  STYLES = { 
+    simple: 'simple', 
+    modern: 'modern', 
+    expert: 'expert',
+    creative: 'creative',
+    vintage: 'vintage',
+    developer: 'developer',
+    executive: 'executive'
+   }.freeze
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :style, presence: true, inclusion: { in: STYLES.keys.map(&:to_s) }

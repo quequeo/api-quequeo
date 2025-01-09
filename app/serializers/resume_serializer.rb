@@ -3,5 +3,6 @@ class ResumeSerializer < ActiveModel::Serializer
 
   belongs_to :user
 
-  has_many :sections, serializer: SectionSerializer
+  has_many :personal_informations
+  has_many :work_experiences
 end
