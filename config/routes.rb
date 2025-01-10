@@ -19,9 +19,11 @@ Rails.application.routes.draw do
           patch :avatar, on: :member
         end
 
+
+        resources :sections, only: [:create, :update, :destroy]
+
         resources :resumes do
           get :styles, on: :collection
-          resources :sections, only: [:create, :update, :destroy], shallow: true
         end
 
         resources :suggestions, only: [:create]

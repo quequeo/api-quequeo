@@ -91,3 +91,7 @@ This project is licensed under the MIT License.
 
 **Author** 👥
 Developed by **Jaime F. García Méndez**
+
+<!-- 
+ActiveRecord::Base.logger.silence { User.find_each(&:touch) } 
+-->
