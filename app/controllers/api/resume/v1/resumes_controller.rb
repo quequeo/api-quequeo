@@ -42,7 +42,7 @@ class Api::Resume::V1::ResumesController < Api::Resume::ApplicationController
   end
 
   def styles
-    render json: Resume::STYLES.keys, status: :ok
+    render json: Resume::STYLES.keys.map(&:to_s), adapter: nil, status: :ok
   end
 
   private

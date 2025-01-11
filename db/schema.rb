@@ -50,15 +50,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_193205) do
     t.index ["resume_id"], name: "index_personal_informations_on_resume_id"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_projects_on_user_id"
-  end
-
   create_table "resumes", force: :cascade do |t|
     t.string "title"
     t.string "style"
@@ -72,16 +63,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_193205) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "sections", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.bigint "resume_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "section_type", default: "", null: false
-    t.index ["resume_id"], name: "index_sections_on_resume_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -111,9 +92,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_193205) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "personal_informations", "resumes"
-  add_foreign_key "projects", "users"
   add_foreign_key "resumes", "users"
-  add_foreign_key "sections", "resumes"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "work_experiences", "resumes"
