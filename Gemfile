@@ -14,7 +14,6 @@ gem "dotenv-rails"
 gem 'aws-sdk-s3', require: false
 gem 'active_model_serializers'
 gem 'pundit'
-gem 'scout_apm'
 gem 'rack-attack'
 
 group :development, :test do
